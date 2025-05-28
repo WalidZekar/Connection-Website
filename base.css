@@ -1,4 +1,7 @@
 /* Reset some defaults */
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;500;600;700&display=swap');
+
+
 * {
     margin: 0;
     padding: 0;
@@ -7,11 +10,11 @@
   
   /* Base typography & colors */
   :root {
+    --font-main: 'Sen', sans-serif;
     --color-bg: #FAF9F6;
     --color-primary: #D6CCC2;
     --color-accent: #A68A64;
     --color-text: #333333;
-    --font-main: 'DM Sans', sans-serif;
   }
   
   body {
@@ -21,34 +24,38 @@
     line-height: 1.5;
   }
 
-  header {
-    background: var(--color-bg);
-    padding: 1rem 2rem;
-    border-bottom: 1px solid #e0dcd7;
-  }
-  
-  nav {
+  .site-nav {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-  }
-  
-  nav .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: var(--color-text);
-  }
-  
-  nav .nav-icons a {
-    margin-left: 1rem;
-    text-decoration: none;
-    color: var(--color-text);
-    width: 1.5rem;
-    height: 1.5rem;
-    display: inline-flex;
-    align-items: center;
     justify-content: center;
+    padding: 0.75 0;
+  }
+
+  .logo,
+  .nav-icon {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-img {
+    height: 40px;             /* adjust to match your design */
+    width: auto;
+  }
+  
+  .nav-icons {
+    display: flex;
+    gap: 1rem;                 /* space between icons */
+  }
+  
+  .nav-icon {
+    width: 44px;
+    height: 44px;
+    margin-left: 1rem;         /* spacing between icons */
+  }
+  
+  .nav-icon img {
+    width: 24px;               /* icon size */
+    height: 24px;
   }
 
   .hero {
