@@ -1,0 +1,82 @@
+/* Reset some defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Base typography & colors */
+  :root {
+    --color-bg: #FAF9F6;
+    --color-primary: #D6CCC2;
+    --color-accent: #A68A64;
+    --color-text: #333333;
+    --font-main: 'DM Sans', sans-serif;
+  }
+  
+  body {
+    font-family: var(--font-main);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  header {
+    background: var(--color-bg);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #e0dcd7;
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  nav .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  
+  nav .nav-icons a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: var(--color-text);
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero {
+    position: relative;
+    padding: 4rem 2rem;
+    background: var(--color-primary) url('../images/hero-bg.jpg') center/cover no-repeat;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .hero .btn-primary {
+    display: inline-block;
+    background: var(--color-accent);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+  }
+  
+  

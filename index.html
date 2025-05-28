@@ -4,13 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connection - Home</title>
+    <link rel="stylesheet" href="base.css" />
 </head>
 <body>
     <header>
         <nav>
-            <!-- To Do: Logo on the left-->
-            <!-- To Do: Search icon, Cart icon, Menu icon on the right -->
+          <a href="index.html" class="logo">Connection</a>
+          <div class="nav-icons">
+            <a href="#" aria-label="Search"> <!-- search icon SVG --> </a>
+            <a href="pages/cart.html" aria-label="View cart"> <!-- cart icon SVG --> </a>
+            <a href="#" aria-label="Menu"> <!-- menu icon SVG --> </a>
+          </div>
         </nav>
     </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <h1>Elevate Your Everyday</h1>
+            <p>Discover curated homeware, fragrances & gifts</p>
+            <a href="pages/product-list.html" class="btn btn-primary">Shop New Arrivals</a>
+          </section>
+
+              <!-- FEATURED PRODUCTS -->
+    <section id="featured" class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-carousel">
+          <!-- Repeat product-card markup -->
+          <article class="product-card">
+            <img src="images/example1.jpg" alt="Product name">
+            <h3>Product Name</h3>
+            <p class="price">$XX.XX</p>
+          </article>
+          <!-- … -->
+        </div>
+      </section>
+
+          <!-- CATEGORIES -->
+    <section id="categories" class="categories">
+        <h2>Shop by Category</h2>
+        <div class="category-grid">
+          <a href="#" class="category-item">
+            <!-- Homeware icon SVG -->
+            <span>Homeware</span>
+          </a>
+          <a href="#" class="category-item">
+            <!-- Perfume icon SVG -->
+            <span>Perfume</span>
+          </a>
+          <a href="#" class="category-item">
+            <!-- Gifts icon SVG -->
+            <span>Gifts</span>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+        <nav class="footer-nav">
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">Shipping</a>
+          <a href="#">Privacy</a>
+        </nav>
+        <p>&copy; 2025 Connection</p>
+      </footer>
+    
+      <script src="js/main.js"></script>
 </body>
 </html>
