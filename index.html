@@ -1,90 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connection - Home</title>
-    <link
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connection - Home</title>
+  <link
     href="https://fonts.googleapis.com/css2?family=Sen:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
   <link rel="stylesheet" href="base.css" />
-    
 </head>
 <body>
-    <header>
-        <div class="container">
-        <nav>
-          <a href="index.html" class="logo">
-            <img src="logo.svg" alt="Connection logo" class="logo-img" />
-          </a>
-          <div class="nav-icons">
-            <a href="#" aria-label="Search" class="nav-icon"> 
-                <img src="Search Icon.svg" alt="" />
-            </a>
-            <a href="pages/cart.html" aria-label="View cart" class="nav-icon"> 
-                <img src="Cart Icon.svg" alt="" />
-            </a>
-            <a href="#" aria-label="Menu" class="nav-icon">
-                <img src="Menu Icon.svg" alt="" />
-              </a>
-          </div>
-        </nav>
+  <!-- HEADER -->
+  <header class="site-nav">
+    <div class="container header-inner">
+      <!-- Logo -->
+      <a href="/" class="logo">
+        <img src="logo.svg" alt="Connection logo" class="logo-img" />
+      </a>
+
+      <!-- Nav Icons -->
+      <div class="nav-icons">
+        <a href="#" aria-label="Search" class="nav-icon">
+          <img src="Search Icon.svg" alt="" />
+        </a>
+        <a href="pages/cart.html" aria-label="View cart" class="nav-icon">
+          <img src="Cart Icon.svg" alt="" />
+        </a>
+        <a href="#" aria-label="Menu" class="nav-icon">
+          <img src="Menu Icon.svg" alt="" />
+        </a>
+      </div>
     </div>
-    </header>
+  </header>
 
-    <main>
-        <section id="hero" class="hero">
-            <h1>Elevate Your Everyday</h1>
-            <p>Discover curated homeware, fragrances & gifts</p>
-            <a href="pages/product-list.html" class="btn btn-primary">Shop New Arrivals</a>
-          </section>
+  <!-- HERO SECTION -->
+  <main>
+    <section class="hero">
 
-              <!-- FEATURED PRODUCTS -->
-    <section id="featured" class="featured-products">
-        <h2>Featured Products</h2>
-        <div class="product-carousel">
-          <!-- Repeat product-card markup -->
-          <article class="product-card">
-            <img src="images/example1.jpg" alt="Product name">
-            <h3>Product Name</h3>
-            <p class="price">$XX.XX</p>
-          </article>
-          <!-- … -->
-        </div>
-      </section>
+    <!-- Prev arrow -->
+    <button class="hero-arrow hero-prev" aria-label="Previous slide">
+        ‹
+      </button>
 
-          <!-- CATEGORIES -->
-    <section id="categories" class="categories">
-        <h2>Shop by Category</h2>
-        <div class="category-grid">
-          <a href="#" class="category-item">
-            <!-- Homeware icon SVG -->
-            <span>Homeware</span>
-          </a>
-          <a href="#" class="category-item">
-            <!-- Perfume icon SVG -->
-            <span>Perfume</span>
-          </a>
-          <a href="#" class="category-item">
-            <!-- Gifts icon SVG -->
-            <span>Gifts</span>
-          </a>
-        </div>
-      </section>
+      <!-- Full-width hero image -->
+      <img
+        src="Hero Desktop.jpg"
+        alt="A styled living room with curated homeware"
+        class="hero-img"
+      />
 
-    </main>
+    <!-- Next arrow -->
+    <button class="hero-arrow hero-next" aria-label="Next slide">
+        ›
+      </button>
 
-    <footer>
-        <nav class="footer-nav">
-          <a href="#">About</a>
-          <a href="#">Contact</a>
-          <a href="#">Shipping</a>
-          <a href="#">Privacy</a>
-        </nav>
-        <p>&copy; 2025 Connection</p>
-      </footer>
-    
-      <script src="js/main.js"></script>
+      <!-- Centered CTA -->
+      <div class="container hero-content">
+        <a href="pages/product-list.html" class="btn btn-primary">
+          Shop New Arrivals
+        </a>
+      </div>
+    </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section id="featured" class="featured-products">
+    <div class="container">
+      <h2>Featured Products</h2>
+      <div class="featured-grid">
+        <!-- Product Card 1 -->
+        <article class="product-card">
+          <img src="images/example1.jpg" alt="Product One" />
+          <h3>Product One</h3>
+          <p class="price">$79.99</p>
+        </article>
+        <!-- Product Card 2 -->
+        <article class="product-card">
+          <img src="images/example2.jpg" alt="Product Two" />
+          <h3>Product Two</h3>
+          <p class="price">$54.99</p>
+        </article>
+        <!-- Product Card 3 -->
+        <article class="product-card">
+          <img src="images/example3.jpg" alt="Product Three" />
+          <h3>Product Three</h3>
+          <p class="price">$99.99</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <nav class="footer-nav">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Shipping</a>
+        <a href="#">Privacy</a>
+      </nav>
+      <p>&copy; 2025 Connection</p>
+    </div>
+  </footer>
+
+  </main>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
