@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta 
+    name="viewport" 
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>Connection – Shopping Cart</title>
+
+  <!-- Google Font: Sen -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sen:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Link to our CSS -->
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="cart.css" />
+</head>
+
+<body>
+  <!-- ================= HEADER (reuse your existing header if you wish) ================ -->
+  <header class="site-nav">
+    <div class="container header-inner">
+      <!-- Logo -->
+      <a href="/" class="logo">
+        <!-- Make sure logo.svg is in tdhe same folder, or adjust the path -->
+        <img src="logo.svg" alt="Connection logo" class="logo-img" />
+      </a>
+
+      <!-- (Optional) Desktop search form -->
+      <form action="/search" method="GET" class="search-form">
+        <input
+          type="search"
+          name="q"
+          placeholder="Search…"
+          aria-label="Search"
+        />
+        <button type="submit" aria-label="Submit search">
+          <img src="Search Icon.svg" alt="Search" />
+        </button>
+      </form>
+
+      <!-- Nav Icons -->
+      <div class="nav-icons">
+        <!-- Mobile search icon -->
+        <a href="#" class="nav-icon nav-icon--search" aria-label="Search">
+          <img src="Search Icon.svg" alt="Search" />
+        </a>
+        <!-- Profile icon (desktop only) -->
+        <a href="/profile" class="nav-icon nav-icon--profile" aria-label="Profile">
+          <img src="Profile 1.svg" alt="Profile" />
+        </a>
+        <!-- Cart icon -->
+        <a href="/shopping-cart.html" class="nav-icon cart-link" aria-label="View cart">
+          <img src="Cart Icon.svg" alt="Cart" />
+          <span class="cart-badge">2</span>
+        </a>
+        <!-- Menu icon -->
+        <a href="#" class="nav-icon nav-icon--menu" aria-label="Menu">
+          <img src="Menu Icon.svg" alt="Menu" />
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT: SHOPPING CART ================ -->
+
+  <div class="container cart-page">
+    <!-- Back arrow + Title row -->
+    <div class="cart-header">
+      <a href="product-list.html" class="cart-back" aria-label="Back">
+        <!-- a simple left‐arrow character or an SVG can go here: -->
+        ‹
+      </a>
+      <h1 class="cart-title">Shopping Cart</h1>
+    </div>
+
+    <!-- …the rest of your cart content (list of items, total, etc.) … -->
+  </div>
+
+
+  <main class="cart-container">
+    <!-- Header row -->
+    <div class="cart-row cart-header">
+      <div class="cart-col cart-col--product">Product</div>
+      <div class="cart-col cart-col--quantity">Quantity</div>
+      <div class="cart-col cart-col--price">Price</div>
+    </div>
+
+    <!-- First item -->
+    <div class="cart-row cart-item">
+      <div class="cart-col cart-col--product">
+        <!-- Thumbnail image -->
+        <img
+          src="leo leopard main.png"
+          alt="Leo Leopard Side Table"
+          class="cart-product-img"
+        />
+        <span class="cart-product-name">Leo Leopard Side Table</span>
+      </div>
+      <div class="cart-col cart-col--quantity">
+        <div class="quantity-selector-desktop">
+          <button class="qty-btn-desktop" aria-label="Decrease">−</button>
+          <span class="qty-value-desktop">1</span>
+          <button class="qty-btn-desktop" aria-label="Increase">＋</button>
+        </div>
+      </div>
+      <div class="cart-col cart-col--price">
+        <span class="new-price">$199.99</span>
+      </div>
+    </div>
+
+    <!-- Second item -->
+    <div class="cart-row cart-item">
+      <div class="cart-col cart-col--product">
+        <img
+          src="grace lamp.svg"
+          alt="Grace Lamp"
+          class="cart-product-img"
+        />
+        <span class="cart-product-name">Grace Lamp</span>
+      </div>
+      <div class="cart-col cart-col--quantity">
+        <div class="quantity-selector-desktop">
+          <button class="qty-btn-desktop" aria-label="Decrease">−</button>
+          <span class="qty-value-desktop">1</span>
+          <button class="qty-btn-desktop" aria-label="Increase">＋</button>
+        </div>
+      </div>
+      <div class="cart-col cart-col--price">
+        <span class="new-price">$650.00</span>
+      </div>
+    </div>
+
+    <!-- Summary / Total row -->
+<!-- … your cart‐item list above … -->
+
+<!-- ───────────────────────────────
+     1) CART SUMMARY (totals + labels)
+   ─────────────────────────────── -->
+<!-- ───────────────────────────────────────────────────
+     6) CART SUMMARY / ORDER TOTAL / FINAL CTA
+     ─────────────────────────────────────────────────── -->
+<div class="cart-summary container">
+  <!-- ── Row 1: “Total / Estimated Shipping / GST” ── -->
+  <div class="summary-top">
+    <!-- Left column: labels -->
+    <div class="summary-left">
+      <p class="summary-label">Total:</p>
+      <p class="summary-label-sm">Estimated Shipping:</p>
+      <p class="summary-label-sm">GST:</p>
+    </div>
+
+    <!-- Right column: amounts -->
+    <div class="summary-right">
+      <p class="summary-total-price">$849.99</p>
+      <p class="summary-shipping">FREE</p>
+      <p class="summary-gst">$77.27</p>
+    </div>
+  </div>
+
+  <!-- ── Row 2: “Shipping Calculator | Discount Code | Checkout Button” ── -->
+  <div class="summary-bottom">
+    <!-- Column A: Shipping Calculator -->
+    <div class="summary-box shipping-box">
+      <h3>Shipping Calculator</h3>
+      <select name="country" class="shipping-country">
+        <option>Australia</option>
+        <option>United States</option>
+        <option>United Kingdom</option>
+        <!-- add any other countries here… -->
+      </select>
+      <button type="button" class="btn btn-secondary shipping-btn">Post Code</button>
+    </div>
+
+    <!-- Column B: Discount Code -->
+    <div class="summary-box discount-box">
+      <h3>Discount Code</h3>
+      <p class="discount-instructions">
+        If you have a coupon or discount code enter it below
+      </p>
+      <div class="discount-input-group">
+        <input 
+          type="text" 
+          name="discount-code" 
+          placeholder="Enter code" 
+          class="discount-input" 
+        />
+        <button type="button" class="btn btn-secondary discount-apply">Apply</button>
+      </div>
+    </div>
+
+    <!-- Column C: Checkout Button -->
+    <div class="checkout-box">
+      <button type="button" class="btn btn-primary checkout-btn">Checkout</button>
+    </div>
+  </div>
+</div>
+<!-- ─────────────────────────────────────────────────── -->
+
+  <!-- ================= FOOTER (optional) ================ -->
+  <!-- ==================== FOOTER (reuse your existing footer) ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col footer-brand">
+        <h2 class="footer-logo">CONNECTION</h2>
+        <p class="footer-follow">Follow us</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">
+            <img src="facebook-svgrepo-com.svg" alt="Facebook" />
+          </a>
+          <a href="#" aria-label="Instagram">
+            <img src="instagram-svgrepo-com.svg" alt="Instagram" />
+          </a>
+          <a href="#" aria-label="Pinterest">
+            <img src="pinterest-180-svgrepo-com.svg" alt="Pinterest" />
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3>Service</h3>
+        <ul>
+          <li><a href="#">Perfume Posts</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>About Us</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Store Finder</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Information</h3>
+        <ul>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Returns Policy</a></li>
+          <li><a href="#">Security Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul class="contact-list">
+          <li><a href="tel:0447166108">0447 166 108</a></li>
+          <li>Melbourne, Australia</li>
+          <li><a href="mailto:hello@connection.com">Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom container">
+      <p class="copyright">© 2025 Connection</p>
+      <div class="footer-payments">
+        <img src="paypal-svgrepo-com (2).svg" alt="PayPal" />
+        <img src="american-express-svgrepo-com.svg" alt="American Express" />
+        <img src="mastercard-svgrepo-com (1).svg" alt="MasterCard" />
+        <img src="visa-svgrepo-com.svg" alt="Visa" />
+      </div>
+    </div>
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>

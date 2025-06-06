@@ -1,0 +1,479 @@
+/* ===========================
+   Base & Reset
+   =========================== */
+   @import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;500;600;700&display=swap');
+
+   html,
+   body {
+     background-color: #EFE6DD;
+   }
+   
+   * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+   }
+   
+   :root {
+     --font-main: 'Sen', sans-serif;
+     --color-bg: #EFE6DD;
+     --color-text: #333333;
+     --color-accent: #A68A64;
+     --color-divider: #C5C1B4;
+   }
+   
+   body {
+     font-family: var(--font-main);
+     background: var(--color-bg);
+     color: var(--color-text);
+     line-height: 1.5;
+   }
+   
+   /* ===========================
+      Utility Container
+      =========================== */
+   .container {
+     width: 90%;
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: 0 1rem;
+   }
+   
+   /* ===========================
+      Header / Navigation
+      =========================== */
+   .site-nav {
+     background: var(--color-bg);
+     position: sticky;
+     top: 0;
+     z-index: 50;
+   }
+
+   .site-nav .container {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .site-nav .header-inner {
+    width: 100%;
+    padding: 0 0.75rem; /* small side padding if desired */
+    box-sizing: border-box;
+  }
+
+  .site-nav .header-inner {
+    width: 100%;
+    padding: 0 0.75rem;  /* optional small padding so icons/text don’t touch the edge */
+    box-sizing: border-box;
+  }
+
+   
+   .header-inner {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 0.75rem 0;
+   }
+   
+   .logo-img {
+     height: 60px;
+     width: auto;
+   }
+   
+   .nav-icons {
+     display: flex;
+     gap: 1rem;
+   }
+   
+   .nav-icon {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 44px;
+     height: 44px;
+   }
+   
+   .nav-icon img {
+     width: 24px;
+     height: 24px;
+     object-fit: contain;
+     filter: invert(60%) sepia(12%) saturate(1086%) hue-rotate(355deg) brightness(92%) contrast(85%);
+   }
+   
+   /* 1) Mobile-first defaults */
+   .search-form { 
+     display: none !important; 
+   }
+   
+   .nav-icon--profile { 
+     display: none; 
+   }
+   .nav-icon--search {
+     display: flex;  /* show the search icon on mobile */
+   }
+
+   .menu-drawer {
+    display: none;    /* hide the drawer on desktop */
+  }
+   
+   /* Hide desktop search on mobile, show on ≥768px */
+   @media (min-width: 768px) {
+     .search-form {
+       display: flex !important;
+       align-items: center;
+       margin: 0 1.5rem;
+     }
+     .search-form input {
+       border: 1px solid var(--color-accent);
+       border-radius: 3px;
+       height: 2.5rem;
+       padding: 0 1rem;
+       font-size: 1rem;
+       font-family: var(--font-main);
+       color: var(--color-text);
+       flex: 1;
+     }
+     .search-form input::placeholder {
+       color: var(--color-text);
+       opacity: 1;
+     }
+     .search-form button {
+       background: transparent;
+       border: none;
+       padding: 0 1rem;
+       cursor: pointer;
+     }
+     .search-form button img {
+       width: 24px;
+       height: 24px;
+       filter: brightness(0) saturate(100%) invert(49%) sepia(71%) saturate(375%) hue-rotate(3deg) brightness(97%) contrast(90%);
+     }
+   
+     .nav-icon--search {
+       display: none;
+     }
+     .nav-icon--profile {
+       display: flex;
+     }
+
+   }
+
+   @media (max-width: 767px) {
+    /* Make the header’s .container truly 100% + box‐sized */
+    .site-nav .container {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0 1rem;      /* optional side‐padding that won’t overflow */
+      box-sizing: border-box;
+    }
+  
+    /* If you also have a .header-inner wrapper, force it to fit: */
+    .site-nav .header-inner {
+      width: 100%;
+      padding: 0;
+      box-sizing: border-box;
+    }
+  
+    /* In case you set any fixed min-width on the logo or icons, cap them: */
+    .site-nav .logo-img,
+    .site-nav .nav-icons {
+      max-width: 100%;
+    }
+  }
+   
+   /* ===========================
+      Category + Filter Row
+      =========================== */
+   .product-list-header {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 16px 0;
+     flex-wrap: wrap;
+     gap: 8px;
+   }
+   
+   /* Category title styling */
+   .category-title {
+     font-size: 1.5rem;
+     font-weight: 600;
+     color: var(--color-text);
+   }
+   
+   /* The filter button (desktop) */
+   .filter-btn {
+     background: none;
+     border: none;
+     cursor: pointer;
+     padding: 0.5rem;
+   }
+   
+   .filter-icon {
+     width: 1.5rem;
+     height: 1.5rem;
+     filter: brightness(0) saturate(100%) invert(33%) sepia(12%) saturate(474%) hue-rotate(10deg) brightness(94%) contrast(88%);
+   }
+   
+   /* ===========================
+      Filter Bubble (Mobile)
+      =========================== */
+   /* Hide by default */
+   .filter-bubble {
+     display: none;
+   }
+   
+   .filter-btn--desktop {
+     display: inline-flex;
+   }
+   
+   @media (max-width: 768px) {
+     .filter-btn--desktop {
+       display: none;
+     }
+   
+     .filter-bubble {
+       display: flex !important;
+       position: fixed;
+       bottom: 16px;
+       right: 16px;
+       width: 48px;
+       height: 48px;
+       background: var(--color-accent);
+       border: none;
+       border-radius: 50%;
+       align-items: center;
+       justify-content: center;
+       z-index: 1000;
+       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+       cursor: pointer;
+     }
+   
+     .filter-bubble__icon {
+       width: 24px;
+       height: 24px;
+       filter: brightness(0) invert(1);
+     }
+   }
+   
+   /* ===========================
+      Product Grid – Desktop + Mobile
+      =========================== */
+   .product-grid {
+     display: grid;
+     gap: 2rem;
+     /* On desktop, show multiple columns */
+     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+     margin-bottom: 3rem;
+   }
+   
+   @media (max-width: 768px) {
+     .product-grid {
+       /* Two columns on mobile */
+       grid-template-columns: repeat(2, 1fr);
+       gap: 1rem;
+     }
+   }
+   
+   /* ===========================
+      Product Card 
+      =========================== */
+   .product-card {
+     background: #fff;
+     border-radius: 4px;
+     overflow: hidden;
+     display: flex;
+     flex-direction: column;
+     text-align: left;
+     padding: 16px;
+     /* box-shadow: 0 2px 6px rgba(0,0,0,0.05);  optional */
+   }
+   
+   .product-card:hover {
+     /* Example hover effect (optional) */
+     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+   }
+   
+   /* Maintain 1:1 aspect ratio for image */
+   .product-image-wrapper {
+     position: relative;
+     width: 100%;
+     padding-top: 100%;
+     overflow: hidden;
+   }
+   
+   .product-image-wrapper .product-img {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: contain;
+   }
+   
+   /* Product name & prices */
+   .product-name {
+     font-size: 1rem;
+     font-weight: 500;
+     color: var(--color-text);
+     margin: 0.75rem 0 0.5rem;
+     padding: 0 0.5rem; /* small side padding on desktop */
+     line-height: 1.2;
+   }
+   
+   .product-prices {
+     margin-top: auto;
+     display: flex;
+     justify-content: space-between;
+     align-items: baseline;
+     padding: 0 0.5rem;
+     gap: 8px;
+   }
+   
+   .price-new, .new-price {
+     font-size: 1rem;
+     font-weight: 600;
+     color: var(--color-text);
+   }
+   
+   .price-old, .old-price {
+     font-size: 0.75rem;
+     font-weight: 400;
+     color: #777;
+     text-decoration: line-through;
+   }
+   
+   /* ===========================
+      Footer
+      =========================== */
+   .site-footer {
+     background: var(--color-text);
+     color: var(--color-bg);
+     padding: 3rem 2rem 1.5rem;
+     font-size: 0.9rem;
+     width: 100%;
+   }
+   
+   .site-footer .footer-inner {
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: 0 1rem;
+     display: flex;
+     flex-wrap: wrap;
+     gap: 2rem;
+   }
+   
+   /* Top section: brand + 4 columns */
+   .footer-col {
+     flex: 1 1 140px;
+   }
+   
+   .footer-brand {
+     flex: 2 1 200px;
+     text-align: center;
+   }
+   
+   /* Logo text */
+   .footer-logo {
+     font-family: var(--font-main);
+     font-size: 1.75rem;
+     color: var(--color-accent);
+     margin-bottom: 0.5rem;
+   }
+   
+   /* “Follow us” label */
+   .footer-follow {
+     margin-bottom: 0.5rem;
+     text-transform: uppercase;
+     letter-spacing: 0.05em;
+     color: var(--color-accent);
+   }
+   
+   /* Social icons wrapper */
+   .footer-social {
+     display: inline-flex;
+     gap: 0.75rem;
+     margin-top: 0.25rem;
+   }
+   
+   .footer-social img {
+     width: 24px;
+     height: 24px;
+     filter: brightness(0) invert(1);
+   }
+   
+   /* Column headings/links */
+   .footer-col h3 {
+     margin-bottom: 0.75rem;
+     color: var(--color-accent);
+     font-size: 1.1rem;
+   }
+   .footer-col ul {
+     list-style: none;
+   }
+   .footer-col ul li {
+     margin-bottom: 0.4rem;
+   }
+   .footer-col a {
+     color: var(--color-bg);
+     text-decoration: none;
+   }
+   .footer-col a:hover {
+     text-decoration: underline;
+   }
+   
+   /* Contact list items */
+   .contact-list li {
+     display: flex;
+     align-items: center;
+   }
+   .contact-list a {
+     color: var(--color-bg);
+   }
+   
+   /* Bottom bar */
+   .footer-bottom {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     border-top: 1px solid rgba(255, 255, 255, 0.2);
+     padding-top: 1rem;
+   }
+   
+   .footer-bottom p {
+     margin: 0;
+     line-height: 1.4;
+   }
+   
+   .footer-bottom small {
+     opacity: 0.8;
+     font-size: 0.8rem;
+   }
+   
+   .footer-payments img {
+     height: 40px;
+     margin-left: 1rem;
+     filter: brightness(0) invert(1);
+   }
+   
+   /* Responsive adjustments */
+   @media (max-width: 768px) {
+     .footer-inner {
+       flex-direction: column;
+       text-align: left;
+       gap: 0.5rem;
+     }
+     .footer-col {
+       margin-bottom: 0.75rem;
+       text-align: left;
+     }
+     .footer-bottom {
+       flex-direction: column;
+       text-align: center;
+       gap: 0.5rem;
+     }
+     .footer-payments {
+       order: -1;
+     }
+   }

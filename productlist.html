@@ -14,65 +14,153 @@
     rel="stylesheet"
   />
   <!-- Your main stylesheet -->
-  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="productlist.css" />
 </head>
+
 <body>
-  <!-- ========== HEADER (reuse your .site-nav) ========== -->
-   <!-- HEADER -->
-   <header class="site-nav">
-    <div class="container header-inner">
-      <!-- Logo -->
-      <a href="/" class="logo">
-        <img src="logo.svg" alt="Connection logo" class="logo-img" />
-      </a>
 
-          <!-- Search bar (desktop only) -->
-    <form action="/search" method="GET" class="search-form">
-        <input type="search" name="q" placeholder="Search…" aria-label="Search"/>
-        <button type="submit" aria-label="Submit search">
-          <img src="Search Icon.svg" alt="" />
-        </button>
-      </form>
+  <!-- =======================
+       HEADER + NAVIGATION (same as index.html)
+       ======================= -->
 
-      <!-- Nav Icons -->
-      <div class="nav-icons">
-          <!-- Search icon (mobile) -->
-         <a href="#" class="nav-icon nav-icon--search" aria-label="Search">
-             <img src="Search Icon.svg" alt="" />
-         </a>
-        <a href="/profile" class="nav-icon nav-icon--profile" aria-label="Profile">
-            <img src="Profile.svg" alt="" />
+<header class="site-nav">
+    <nav class="menu-drawer" aria-hidden="true">
+        <!-- 1a) Drawer Header (close icon + optional profile icon) -->
+        <div class="drawer-header">
+          <!-- Example profile icon (optional) -->
+          <a href="/profile" class="drawer-profile" aria-label="Profile">
+            <img src="Profile.svg" alt="Profile icon" />
           </a>
-        <a href="pages/cart.html" aria-label="View cart" class="nav-icon">
-          <img src="Cart Icon.svg" alt="" />
-        </a>
-        <a href="#" aria-label="Menu" class="nav-icon">
-          <img src="Menu Icon.svg" alt="" />
-        </a>
-      </div>
-    </div>
-  </header>
+      
+          <!-- “X” button to close the drawer -->
+          <button class="drawer-close" aria-label="Close menu">✕</button>
+        </div>
+      
+        <!-- 1b) Drawer Content: A vertical list of top‐level categories -->
+        <ul class="drawer-list">
+          <!-- Each <li> is a collapsible section -->
+          <li class="drawer-item">
+            <button class="drawer-button">
+              Homewares &amp; Décor
+              <span class="drawer-icon">＋</span>
+            </button>
+            <!-- Submenu (initially hidden) -->
+            <ul class="drawer-submenu">
+              <li><a href="#">Coasters &amp; Placemats</a></li>
+              <li><a href="#">Decorator Items</a></li>
+              <li><a href="#">Bar</a></li>
+            </ul>
+          </li>
+      
+          <li class="drawer-item">
+            <button class="drawer-button">
+              Connection Parfumerie
+              <span class="drawer-icon">＋</span>
+            </button>
+            <ul class="drawer-submenu">
+              <li><a href="#">Zoologist Perfumes</a></li>
+              <li><a href="#">Toskovat</a></li>
+              <li><a href="#">Liquides Imaginaires</a></li>
+            </ul>
+          </li>
+      
+          <li class="drawer-item">
+            <button class="drawer-button">
+              Gifts
+              <span class="drawer-icon">＋</span>
+            </button>
+            <ul class="drawer-submenu">
+              <li><a href="#">Eclectic Gifts</a></li>
+              <li><a href="#">Clothing Accessories</a></li>
+              <li><a href="#">Jewellery &amp; Displays</a></li>
+            </ul>
+          </li>
+      
+          <li class="drawer-item">
+            <button class="drawer-button">
+              Home Fragrance &amp; Oils
+              <span class="drawer-icon">＋</span>
+            </button>
+            <ul class="drawer-submenu">
+                <li><a href="#">Candles</a></li>
+                <li><a href="#">Essential Oil Products</a></li>
+                <li><a href="#">Fragrance Oil Products</a></li>
+            </ul>
+          </li>
+      
+          <li class="drawer-item">
+            <button class="drawer-button">
+              New Arrivals
+              <span class="drawer-icon">＋</span>
+            </button>
+            <ul class="drawer-submenu">
+                <li><a href="#">Homewares & Décor</a></li>
+                <li><a href="#">Gifts</a></li>
+                <li><a href="#">Pots & Planters</a></li>
+            </ul>
+          </li>
+      
+          <li class="drawer-item">
+            <button class="drawer-button">
+              Luxury Gifts
+             
+            </button>
+          </li>
+        </ul>
+      </nav>
+      
+    
+    
+        <div class="container header-inner">
+          <!-- Logo -->
+          <a href="/" class="logo">
+            <img src="logo.svg" alt="Connection logo" class="logo-img" />
+          </a>
+    
+              <!-- Search bar (desktop only) -->
+        <form action="/search" method="GET" class="search-form">
+            <input type="search" name="q" placeholder="Search…" aria-label="Search"/>
+            <button type="submit" aria-label="Submit search">
+              <img src="Search Icon.svg" alt="" />
+            </button>
+          </form>
+    
+          <!-- Nav Icons -->
+          <div class="nav-icons">
+              <!-- Search icon (mobile) -->
+             <a href="#" class="nav-icon nav-icon--search" aria-label="Search">
+                 <img src="Search Icon.svg" alt="" />
+             </a>
+            <a href="/profile" class="nav-icon nav-icon--profile" aria-label="Profile" class="nav-icon">
+                <img src="Profile 1.svg" alt="" />
+              </a>
+            <a href="pages/cart.html" aria-label="View cart" class="nav-icon">
+              <img src="Cart Icon.svg" alt="" />
+            </a>
+            <a href="#" aria-label="Menu" class="nav-icon nav-icon--menu">
+              <img src="Menu Icon.svg" alt="" />
+            </a>
+          </div>
+        </div>
+      </header>
+    
   <!-- ========== MAIN CONTENT ========== -->
   <main class="product-list-page">
     <!-- -------- Category & Filter Row -------- -->
-    <div class="product-list-header container">
+<section class = "shop-by-category">
+    <div class="container">
+        <div class="product-list-header">
       <h1 class="category-title">Homewares &amp; Décor</h1>
-      <button
-        class="filter-btn"
-        aria-label="Filter products"
-      >
-        <img
-          src="filter.svg"
-          alt="Filter"
-          class="filter-icon"
-        />
+      <button class="filter-btn filter-btn--desktop" aria-label="Filter products" onclick="openFilterDrawer()">
+        <img src="filter.svg" alt="Filter" class="filter-icon" />
       </button>
+     </div>
     </div>
-
+</section>
     <!-- -------- Product Grid -------- -->
     <div class="product-grid container">
       <!-- Product Card #1 -->
-      <div class="product-card">
+      <div class="product-card product-item" data-id="leo-leopard">
         <div class="product-image-wrapper">
           <img
             src="leo leopard.jpg"
@@ -90,7 +178,7 @@
       </div>
 
       <!-- Product Card #2 -->
-      <div class="product-card">
+      <div class="product-card product-item" data-id="grace-lamp">
         <div class="product-image-wrapper">
           <img
             src="grace lamp.svg"
@@ -98,7 +186,9 @@
             class="product-img"
           />
         </div>
-        <h2 class="product-name">Grace Lamp</h2>
+        <h2 class="product-name">
+            Grace Lamp
+        </h2>
         <div class="product-prices">
           <span class="price-new">$650.00</span>
           <span class="price-old">$850.00</span>
@@ -216,6 +306,81 @@
 
 
     </div>
+  <!-- =======================
+       FOOTER
+       ======================= -->
+  <footer class="site-footer">
+    <div class="footer-inner container">
+      <div class="footer-col footer-brand">
+        <h2 class="footer-logo">CONNECTION</h2>
+        <p class="footer-follow">Follow us</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><img src="facebook-svgrepo-com.svg" alt="" /></a>
+          <a href="#" aria-label="Instagram"><img src="instagram-svgrepo-com.svg" alt="" /></a>
+          <a href="#" aria-label="Pinterest"><img src="pinterest-180-svgrepo-com.svg" alt="" /></a>
+        </div>
+      </div>
+  
+      <div class="footer-col">
+        <h3>Service</h3>
+        <ul>
+          <li><a href="#">Perfume Posts</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-col">
+        <h3>About Us</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Store Finder</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-col">
+        <h3>Information</h3>
+        <ul>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Returns Policy</a></li>
+          <li><a href="#">Security Policy</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul class="contact-list">
+          <li><a href="tel:0447166108">0447 166 108</a></li>
+          <li>Melbourne, Australia</li>
+          <li><a href="mailto:hello@connection.com">Email us</a></li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="footer-bottom container">
+      <p class="copyright">
+        © 2025 Connection<br>
+  
+      </p>
+      <div class="footer-payments">
+        <img src="paypal-svgrepo-com (2).svg" alt="PayPal">
+        <img src="american-express-svgrepo-com.svg"  alt="American Express">
+        <img src="mastercard-svgrepo-com (1).svg" alt="MasterCard">
+        <img src="visa-svgrepo-com.svg" alt="Visa">
+      </div>
+    </div>
+  </footer>
+  
+  <button 
+  class="filter-bubble" 
+  aria-label="Filter products"
+  onclick="openFilterDrawer()" 
+>
+  <img src="filter.svg" alt="Filter" class="filter-bubble__icon" />
+</button>
+
   </main>
+
+  <script src="main.js"></script>
 </body>
 </html>

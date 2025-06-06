@@ -1,0 +1,379 @@
+/* product.css */
+
+/* 1) Ensure the container for entire product page is centered and flexes on desktop */
+.product-page {
+    display: flex;
+    align-items: flex-start;
+    /* If you want the two columns side-by-side on desktop: */
+    gap: 2rem;                     /* space between gallery and details */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  /* 2) Layout: gallery + info side by side on desktop */
+  .product-detail {
+    display: flex;
+    align-items: stretch;
+    gap: 2rem;
+  }
+  
+  /* 3) Gallery container: thumbnails on left, main image on right */
+  .product-gallery {
+    display: flex;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  /* 4) Thumbnail list: stack thumbs vertically */
+  .thumbnail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+  }
+  
+  /* Style each thumbnail */
+  .thumb {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+  
+  .thumbnail-list .thumb {
+    flex: 0 0 auto;              /* grow & shrink equally */
+    width: 100%;
+    max-height: 100%;             /* fill whatever “slice” of the parent's height is assigned */
+    object-fit: cover;        /* crop/scale to fill the box without distortion */
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+  
+
+
+  .thumbnail-list .thumb:hover,
+  .thumbnail-list .thumb:focus {
+    border-color: var(--color-accent);
+  }
+  
+  /* 5) Main image wrapper */
+  .image-card {
+    position: relative;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .image-card .main-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .image-card .thumb-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: var(--color-text);
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+
+  .image-card .thumb-nav.prev {
+    left: 0.5rem;   /* 8px from the left edge of the card */
+  }
+  
+  .image-card .thumb-nav.next {
+    right: 0.5rem;  /* 8px from the right edge of the card */
+  }
+
+  .main-image-wrap {
+    flex: 1;                  /* take up remaining horizontal space */
+    display: flex;
+    align-items: center;      /* vertical‐center the image inside */
+    justify-content: center;
+    min-width: 0;  /* horizontal‐center the image inside */
+  }
+  
+  /* The large product image */
+  .main-image {
+    display: block;            /* fill the width of the container */
+    max-width: 100%;         /* or whatever max‐width you need */
+    height: auto;    
+    object-fit: contain;         /* keep aspect ratio, thereby fixing the flex row’s height */
+    border-radius: 8px;       /* optional: round corners if you want a “card” effect */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* optional: shadow if you want a card */
+  }
+  
+  /* 6) Arrow buttons */
+  .thumb-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: var(--color-text);
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+  
+  .thumb-nav.prev {
+    left: -1.5rem;
+  }
+  
+  .thumb-nav.next {
+    right: -1.5rem;
+  }
+
+  /* ---------------- Lightbox Overlay Styles ---------------- */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+  }
+  
+  .lightbox-overlay.open {
+    display: flex;
+  }
+  
+  .lightbox-img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    object-fit: contain;
+  }
+  
+  .lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  /* 7) Product info (column on right) */
+
+  .product-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+
+}
+  .product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+  .details-top {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;  /* spacing between title, price block, description */
+  }
+
+  
+  /* Title styling */
+  .product-title {
+    font-family: var(--font-main);
+    font-size: 2rem;           /* adjust to match your mockup (e.g., 32px) */
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 1rem;       /* space below title */
+    line-height: 1.2;
+  }
+  
+  /* Price block */
+  .product-block {
+    position: relative;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #C5C1B4;
+    margin-bottom: 0.75rem;
+  }
+  
+  .product-price {
+    font-size: 2rem;           /* e.g., 32px */
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  
+  .old-price {
+    font-size: 1rem;
+    color: #888;            /* greyed‐out “old” price */
+    text-decoration: line-through;
+  }
+  
+  /* Description box */
+  .product-description {
+    background-color: var(--color-desc-bg);
+    color: var(--color-desc-text);
+    font-family: var(--font-main);
+    font-size: 1rem;           /* e.g., 16px text */
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;       /* space before the quantity & button */
+  }
+
+  .purchase-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .quantity-selector {
+    display: flex;
+    background: #ffffff;            /* white background */
+    border-radius: 4px;             /* rounded corners (adjust as needed) */
+    overflow: hidden;               /* ensure children don’t bleed outside */
+    border: 1px solid #C5C1B4;      /* a light border, matching your accent palette */
+    width: max-content;             /* shrink to fit content */
+    height: 2rem;
+  }
+
+  .qty-btn,
+.qty-value {
+  flex: 1 1 0;                    /* let each take equal width */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-main);
+  font-size: 1.25rem;
+  color: var(--color-text);
+}
+  
+.qty-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.75rem 1rem;          /* adjust padding to taste */
+  }
+
+  .qty-btn:hover {
+    background: rgba(0,0,0,0.03);    /* very subtle hover tint */
+  }
+
+  
+  .qty-value {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    /* push the left and right borders away from the text */
+    padding: 0 0.5rem;             
+    font-family: var(--font-main);
+    font-size: 1.25rem;
+    font-weight: 600;
+    /* vertical dividers */
+    border-left: 1px solid #C5C1B4;
+    border-right: 1px solid #C5C1B4;
+    height: 100%;
+  }
+  
+  /* Add to Cart button */
+  .btn-primary.add-to-cart {
+    background: var(--color-accent);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;  /* if you want it full‐width */
+    font-family: var(--font-main);
+  }
+  .btn-primary.add-to-cart:hover {
+    background: var(--color-secondary);
+  }
+
+  
+  /* 8) Responsive: stack gallery vertically on narrower screens */
+  @media (max-width: 768px) {
+    /* 1) PRODUCT DETAIL: stack gallery and info vertically */
+    .product-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+  
+    /* 2) PRODUCT GALLERY: stack main image above thumbnail strip */
+    .product-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    /* 3) THUMBNAIL LIST: horizontal scrolling row */
+    .thumbnail-list {
+      display: none
+    }
+  
+
+    /* 6) MAIN IMAGE: full-width, maintain aspect ratio */
+    .image-card {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    .main-image {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .details-top {
+        gap: 0.5rem;
+    }
+
+    .product-title {
+        margin-bottom: 0.25rem;
+    }
+  
+
+    /* 8) (Optional) Adjust spacing inside quantity selector on mobile */
+    .quantity-selector {
+      margin-bottom: 1rem;
+    }
+  }
+  
+
+  body {
+    background-color: var(--color-desc-bg);
+  }
+

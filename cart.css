@@ -1,0 +1,679 @@
+/* ===========================
+   Base & Reset
+   =========================== */
+   @import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;500;600;700&display=swap');
+
+   :root {
+    --font-main: 'Sen', sans-serif;
+    --color-bg: #EFE6DD;           /* overall page background */
+    --color-text: #333333;
+    --color-accent: #A68A64;
+    --color-card-bg: #FFFFFF;
+    --color-divider: #C5C1B4;       /* thin line under headings, etc. */
+    --color-label: #333333;         /* label text (Total:, etc.) */
+    --color-value: #333333;         /* values (FREE, $77.27) */
+    --color-total: #333333;         /* big $849.99 */
+    --color-button-bg: #A68A64;      /* accent for "Checkout" */
+    --color-button-text: #FFFFFF;
+    --radius: 4px;
+    --gap-small: 0.5rem;
+    --gap-med: 1rem;
+    --gap-large: 2rem;
+    --border-thin: 1px solid var(--color‐divider);
+    --shadow-light: 0 2px 4px rgba(0,0,0,0.05);
+  }
+   
+   * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+   }
+   
+   body {
+     font-family: var(--font-main);
+     background: var(--color-bg);
+     color: var(--color-text);
+     line-height: 1.5;
+   }
+   
+   /* ===========================
+      Utility Container
+      =========================== */
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .cart-page.container {
+        padding: 0;
+      }
+   
+   /* ===========================
+      Header / Navigation
+      =========================== */
+   .site-nav {
+     background: var(--color-bg);
+     position: sticky;
+     top: 0;
+     z-index: 50;
+   }
+   
+   .header-inner {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 0.75rem 0;
+   }
+   
+   .logo-img {
+     height: 60px;
+     width: auto;
+   }
+   
+   .nav-icons {
+     display: flex;
+     gap: 1rem;
+   }
+   
+   .nav-icon {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 44px;
+     height: 44px;
+   }
+   
+   .nav-icon img {
+     width: 24px;
+     height: 24px;
+     object-fit: contain;
+     filter: invert(60%) sepia(12%) saturate(1086%) hue-rotate(355deg)
+       brightness(92%) contrast(85%);
+   }
+   
+   .cart-link {
+    position: relative;
+    display: inline-flex; /* so it shrinks‐wraps to just the icon */
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* 2) Style the badge itself and absolutely place it over the icon */
+  .cart-badge {
+    position: absolute;
+    top: -1px;
+    right: 5px;
+    background: var(--color-accent);  /* same accent colour you use site‐wide */
+    color: #fff;
+    font-family: var(--font-main);
+    font-size: 0.75rem;               /* adjust to taste */
+    line-height: 1;
+    width: 16px;                      /* a small circle around the number */
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;               /* makes it perfectly round */
+  }
+  
+  /* 3) (Optional) Hide badge when count is zero */
+  .cart-badge:empty {
+    display: none;
+  }
+   
+   /* Hide desktop search on mobile, show on ≥768px */
+   .search-form {
+     display: none;
+   }
+   .nav-icon--profile {
+     display: none;
+   }
+   .nav-icon--search {
+     display: flex;
+   }
+   
+   /* DESKTOP & TABLET (≥768px) */
+   @media (min-width: 768px) {
+     .search-form {
+       display: flex;
+       align-items: center;
+       margin: 0 1.5rem;
+     }
+     .search-form input {
+       border: 1px solid var(--color-accent);
+       border-radius: 3px;
+       height: 2.5rem;
+       padding: 0 1rem;
+       font-size: 1rem;
+       font-family: var(--font-main);
+       color: var(--color-text);
+       flex: 1;
+     }
+     .search-form input::placeholder {
+       color: var(--color-text);
+       opacity: 1;
+     }
+     .search-form button {
+       background: transparent;
+       border: none;
+       padding: 0 1rem;
+       cursor: pointer;
+     }
+     .search-form button img {
+       width: 24px;
+       height: 24px;
+       filter: brightness(0) saturate(100%) invert(49%) sepia(71%) saturate(375%) hue-rotate(3deg) brightness(97%) contrast(90%);
+     }
+   
+     .nav-icon--search {
+       display: none;
+     }
+     .nav-icon--profile {
+       display: flex;
+     }
+   }
+   
+   /* ===========================
+      Main: Shopping Cart Layout
+      =========================== */
+
+      .cart-page {
+        padding: 2rem 0;
+      }
+      
+      .cart-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-bottom: 1px solid #C5C1B4; /* horizontal divider */
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+        justify-content: flex-start;
+        padding-left: 0;
+      }
+      
+      .cart-back {
+        font-size: 1.5rem;
+        color: var(--color-text);
+        text-decoration: none;
+        line-height: 1;
+      }
+      
+      .cart-back:hover {
+        color: var(--color-accent);
+      }
+      
+      .cart-title {
+        font-family: var(--font-main);
+        font-weight: 600;
+        font-size: 1.75rem;  /* adjust to match your mockup, e.g. 28px */
+        color: var(--color-text);
+        margin: 0;
+      }
+
+   .cart-container {
+     width: 90%;
+     max-width: 1200px;
+     margin: 1rem auto;
+     padding-bottom: 2rem;
+   }
+   
+   /* Each row is a 3‐column grid: 2fr | 1fr | 1fr */
+   .cart-row {
+     display: grid;
+     grid-template-columns:
+       2fr    /* Product column is twice as wide */
+       1fr    /* Quantity column */
+       1fr;   /* Price column */
+     align-items: center;
+     padding: 0.75rem 0;
+     gap: 1rem; /* space between columns */
+   }
+   
+   /* Header row style */
+   .cart-row.cart-header {
+     border-bottom: 1px solid var(--border-light);
+     padding-bottom: 0.75rem;
+   }
+   .cart-row.cart-header .cart-col {
+     font-weight: 600;
+     font-size: 1rem;
+   }
+   
+   /* Product column: show image + name */
+   .cart-col--product {
+     display: flex;
+     align-items: center;
+     gap: 0.75rem;
+   }
+   .cart-product-img{
+    background: #fff;
+    padding: 0.25rem;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    display: block;
+  }
+   .cart-product-name {
+     font-family: var(--font-main);
+     font-size: 1.5rem;
+     color: var(--color-text);
+   }
+   
+   /* Quantity column: center the qty selector under header */
+   .cart-col--quantity {
+     display: flex;
+     justify-content: center;
+   }
+   
+   /* Price column: align right */
+   .cart-col--price {
+     text-align: right;
+   }
+   
+   /* Separate each item with a bottom border */
+   .cart-item:not(:last-child) {
+     border-bottom: 1px solid #E0DAD3;
+   }
+   
+   /* ================ Quantity Selector (Desktop) ================ */
+   @media (min-width: 768px) {
+    /* === Cart Page Quantity Selector (copied from product page) === */
+    .quantity-selector-desktop {
+      display: flex;
+      background: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      width: max-content;
+      height: 2rem;
+    }
+    .qty-btn-desktop {
+      flex: 1 1 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      font-family: var(--font-main);
+      font-size: 1.25rem;
+      line-height: 2rem;          /* match the 2rem height */
+      color: var(--color-text);
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    .qty-btn-desktop:hover {
+      background: rgba(0, 0, 0, 0.03);
+    }
+    .qty-value-desktop {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      font-family: var(--font-main);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-text);
+      border-left: 1px solid var(--border-light);
+      border-right: 1px solid var(--border-light);
+      padding: 0 0.5rem;
+      height: 100%;
+      box-sizing: border-box;
+    }
+  }
+   
+/*────────────────────────────────────────────────────────
+  Cart Summary / Order Total / Checkout Section Styles
+ ────────────────────────────────────────────────────────*/
+
+/* Ensure the cart-summary block spans the same container width */
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;        /* space above */
+    margin-bottom: 2rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-main);
+  }
+  
+  /* Row 1: “Total / Estimated Shipping / GST” */
+  .summary-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;   /* bottom-align the labels + amounts */
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #C5C1B4;   /* thin divider line */
+  }
+  
+  /* Left column: text labels */
+  .summary-left .summary-label {
+    font-size: 1.5rem;        /* match your heading size */
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  
+  .summary-left .summary-label-sm {
+    font-size: 1rem;
+    color: #555;              /* slightly greyed text for “Estimated… / GST…” */
+    margin-top: 0.2rem;
+  }
+  
+  /* Right column: numeric values */
+  .summary-right {
+    text-align: right;
+  }
+  
+  .summary-right .summary-total-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  
+  .summary-right .summary-shipping,
+  .summary-right .summary-gst {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 0.2rem;
+  }
+  
+  /* Row 2: “Shipping Calculator | Discount Code | Checkout” */
+  .summary-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  /* Generic styling for each white box (“.summary-box”) */
+  .summary-box {
+    background: #FFFFFF;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  
+  /* ── Column A: Shipping Calculator ── */
+  .shipping-box h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* style the <select> */
+  .shipping-country {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-family: var(--font-main);
+    border: 1px solid var(--color-accent);
+    border-radius: 4px;
+    background: #fff;
+    margin-bottom: 0.75rem;
+    appearance: none;   /* remove default arrow for a uniform look */
+    background-image: url("arrow\ up\ and\ down.svg");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 1rem) center;
+  }
+  
+  /* “Post Code” button next to <select> */
+  .shipping-btn {
+    background: #fff;
+    color: var(--color-text);
+    border: 1px solid var(--color-accent);
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-family: var(--font-main);
+    cursor: pointer;
+  }
+  
+  /* ── Column B: Discount Code ── */
+  .discount-box h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .discount-instructions {
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+    color: #555;
+  }
+  
+  /* wrap the code input + button side by side */
+  .discount-input-group {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .discount-input {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    border: 1px solid var(--color-accent);
+    border-radius: 4px;
+  }
+  
+  .discount-apply {
+    background: #fff;
+    color: var(--color-text);
+    border: 1px solid var(--color-accent);
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-family: var(--font-main);
+    cursor: pointer;
+  }
+  
+  /* ── Column C: Checkout Button ── */
+  .checkout-box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  
+  .checkout-btn {
+    background: var(--color-accent);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    font-family: var(--font-main);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  
+  .checkout-btn:hover {
+    background: #8C6F40; /* slightly darker accent on hover (adjust as desired) */
+  }
+   
+   /* ================ Old‐price/New‐price styling ================ */
+
+   .new-price {
+     font-family: var(--font-main);
+     font-size: 1.5rem;
+     font-weight: 600;
+     color: var(--color-text);
+   }
+   
+   /* ================ Responsive: Stack on Mobile ================ */
+ /* ──────────────────────────────────────────────────────
+   Mobile adjustments (max‐width:767px)
+   ────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+    /* Hide the desktop header‐row labels */
+    .cart-row.cart-header {
+      display: none;
+    }
+  
+    /* Each cart‐item should become a stacked “card” */
+    .cart-item {
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+  
+    /* Product portion: image full‐width, name below, remove “×” top‐right */
+    .cart-col--product {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+    .cart-product-img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+    .cart-product-name {
+      font-family: var(--font-main);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    /* Remove‐button in top‐right corner of the “card” */
+    .remove-btn-mobile {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      color: #888;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .remove-btn-mobile:hover {
+      color: var(--color-accent);
+    }
+  
+    /* Price + quantity on the same row, below the name */
+    .cart-col--quantity,
+    .cart-col--price {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem 1rem;
+    }
+  
+    /* Hide the default “old price” if you want, or keep as small strikethrough */
+    .old-price {
+      font-size: 0.875rem;
+      color: #888;
+      text-decoration: line-through;
+      margin-left: 0.5rem;
+    }
+  
+    /* Re‐use your existing quantity‐selector markup, but scale down */
+    .quantity-selector-desktop {
+      display: flex;
+      background: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--color-divider);
+      height: 2rem;
+    }
+    .qty-btn-desktop {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      font-family: var(--font-main);
+      font-size: 1rem;         /* slightly smaller on mobile */
+      line-height: 2rem;
+      color: var(--color-text);
+      cursor: pointer;
+      padding: 0 0.5rem;
+    }
+    .qty-btn-desktop:hover {
+      background: rgba(0, 0, 0, 0.03);
+    }
+    .qty-value-desktop {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      font-family: var(--font-main);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text);
+      border-left: 1px solid var(--color-divider);
+      border-right: 1px solid var(--color-divider);
+      padding: 0 0.25rem;
+      height: 100%;
+      box-sizing: border-box;
+    }
+  
+    /* Summary‐section tweaks */
+    .cart-summary {
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+  
+    /* Row 1: Total / Shipping / GST stacked (labels + values) */
+    .summary-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .summary-left,
+    .summary-right {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .summary-left {
+      gap: 1rem;
+    }
+    .summary-right {
+      gap: 1rem;
+    }
+  
+    /* Row 2: Shipping / Discount / Checkout stacked */
+    .summary-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    /* White “boxes” fill full width on mobile */
+    .summary-box {
+      width: 100%;
+    }
+  
+    .checkout-box {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .checkout-btn {
+      width: 100%;
+    }
+  
+
+  }
+   
+   

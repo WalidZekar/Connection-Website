@@ -3,11 +3,11 @@
    =========================== */
    @import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;500;600;700&display=swap');
 
-    html,
-    body {
-        background-color: #FAF9F6 !important;
-    }
-
+   html,
+   body {
+     background-color: #EFE6DD;
+   }
+   
    * {
      margin: 0;
      padding: 0;
@@ -16,7 +16,7 @@
    
    :root {
      --font-main: 'Sen', sans-serif;
-     --color-bg: #FAF9F6;
+     --color-bg: #EFE6DD;
      --color-text: #333333;
      --color-accent: #A68A64;
    }
@@ -28,7 +28,6 @@
      color: var(--color-text);
      line-height: 1.5;
    }
-
    
    /* ===========================
       Utility Container
@@ -44,7 +43,7 @@
       Header / Navigation
       =========================== */
    .site-nav {
-     background: var(--color-bg);        /* white bar */
+     background: var(--color-bg);
      position: sticky;
      top: 0;
      z-index: 50;
@@ -79,568 +78,543 @@
      width: 24px;
      height: 24px;
      object-fit: contain;
-     /* if you want to tint via CSS, use filter or inline SVG */
+     filter: invert(60%) sepia(12%) saturate(1086%) hue-rotate(355deg) brightness(92%) contrast(85%);
    }
-   .nav-icons .nav-icon img {
-    width: 24px;
-    height: 24px;
-    /* filter to tint to your accent colour */
-    filter: invert(60%) sepia(12%) saturate(1086%) hue-rotate(355deg) brightness(92%) contrast(85%);
-  }
-
-
+   
    /* 1) Mobile-first defaults */
-.search-form { 
-    display: none !important; 
-}
-.nav-icon--profile { 
-    display: none; 
-}
-.nav-icon--search {
-    display: flex;           /* show the search icon */
-}
+   .search-form { 
+     display: none !important; 
+   }
+   
+   .search-form.visible {
+     display: flex;
+     align-items: center;
+     margin: 0 1.5rem;
+   }
+   
+   .nav-icon--profile { 
+     display: none; 
+   }
+   .nav-icon--search {
+     display: flex;           /* show the search icon on mobile */
+   }
+   
+/* ====== MENU DRAWER & HEADER CSS ====== */
 
-/* DESKTOP & TABLET (≥768px) */
-@media (min-width: 768px) {
-    .search-form {
-      display: flex !important;
-      align-items: center;
-      margin: 0 1.5rem;         /* show the search bar */
-    }
-    .nav-icon--search {
-      display: none;         /* hide the mobile search icon */
-    }
-    .nav-icon--profile {
-      display: flex;         /* show the profile icon */
-    }
+/* ----------------------------------------
+   1) Mobile‐first: drawer is off‐canvas (hidden) via transform
+   ---------------------------------------- */
+   .menu-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;                       /* off‐canvas to the right */
+    width: 80vw;                    /* drawer width on mobile */
+    max-width: 320px;               /* optional cap */
+    height: 100vh;                  /* full viewport height */
+    background: #B3B097;            /* your drawer background color */
+    transform: translateX(100%);    /* start completely off‐screen */
+    transition: transform 0.3s ease;
+    z-index: 1000;                  /* above everything else */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;               /* allow scrolling if content is tall */
+    padding-top: 1rem;
+    font-family: var(--font-main) !important;
+    color: #FFF;
   }
 
-@media (max-width: 600px) {
-    .logo-img {
-        height: 80px;
-        width: auto;
-    }
-}
-
-  
-
-  /* ──────────────────────────────────────────
-   Desktop Search Bar Styles
-   ────────────────────────────────────────── */
-.search-form {
-    border: 1px solid var(--color-accent) !important;
-    border-radius: 3px;
-    height: 2.5rem;
+  .menu-drawer,
+.menu-drawer * {
+  font-family: var(--font-main) !important;
 }
   
-.search-form input {
-    flex: 1;
-    height: 100%;               /* match the .search-form height */
-    padding: 0 1rem;            /* 1rem space on left/right */
-    font-size: 1rem;
-    font-family: var(--font-main);
+  /* ----------------------------------------
+     2) When JavaScript adds “.open”, slide it in
+     ---------------------------------------- */
+  .menu-drawer.open {
+    transform: translateX(0);       /* slide into view */
+  }
+  
+  /* ----------------------------------------
+     3) Drawer header (profile + close button)
+     ---------------------------------------- */
+  .drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .drawer-profile img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .drawer-close {
+    background: none;
     border: none;
-  }
-
-  .search-form input::placeholder {
-    color: var(--color-text);
-    opacity: 1;
-  }
-  
-
-  .search-form button {
-    background: white;       /* transparent background */
-    border: none;           /* remove any leftover border */
-    padding: 0 1rem;        /* maintain tappable area */
+    font-size: 1.5rem;
+    color: #FFF;
     cursor: pointer;
   }
   
-  /* 3. Enlarge the icon and tint it to the accent colour */
-  /* Option A: Inline SVG approach (recommended) */
-  /* If you replace your <img> with inline <svg> in the button: */
-  .search-form button svg {
-    width: 24px;            /* bigger icon size */
-    height: 24px;
-    fill: var(--color-accent);
+  /* ----------------------------------------
+     4) Drawer list styling
+     ---------------------------------------- */
+  .drawer-list {
+    list-style: none;
+    padding: 0 1rem;
+    margin: 0;
   }
   
-  /* Option B: <img> filter hack */
-  /* If you must stick with <img src="search-icon.svg">: */
-  .search-form button img {
-    width: 24px;
-    height: 24px;
-    /* filter to approximate var(--color-accent) */
-    filter: brightness(0) saturate(100%) invert(49%) sepia(71%) saturate(375%) hue-rotate(3deg) brightness(97%) contrast(90%);
+  .drawer-item + .drawer-item {
+    margin-top: 1rem;
   }
   
+  .drawer-button {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #FFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    cursor: pointer;
+  }
+  
+  .drawer-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+  
+  /* Submenu hidden by default */
+  .drawer-submenu {
+    list-style: none;
+    padding-left: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    margin: 0;
+  }
+  
+  /* When parent <li> has .expanded, reveal submenu */
+  .drawer-item.expanded .drawer-submenu {
+    max-height: 300px; /* adjust if you need more room */
+  }
+  
+  .drawer-submenu li + li {
+    margin-top: 0.5rem;
+  }
+  
+  .drawer-submenu a {
+    color: #FFF;
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+  
+  /* Optional WebKit scrollbar styling */
+  .menu-drawer::-webkit-scrollbar {
+    width: 6px;
+  }
+  .menu-drawer::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+  
+  /* Hide desktop search on mobile, show on ≥768px */
+  @media (min-width: 768px) {
+    .search-form {
+      display: flex !important;
+      align-items: center;
+      margin: 0 1.5rem;
+    }
+    .search-form input {
+      border: 1px solid var(--color-accent);
+      border-radius: 3px;
+      height: 2.5rem;
+      padding: 0 1rem;
+      font-size: 1rem;
+      font-family: var(--font-main);
+      color: var(--color-text);
+      flex: 1;
+    }
+    .search-form input::placeholder {
+      color: var(--color-text);
+      opacity: 1;
+    }
+    .search-form button {
+      background: transparent;
+      border: none;
+      padding: 0 1rem;
+      cursor: pointer;
+    }
+    .search-form button img {
+      width: 24px;
+      height: 24px;
+      filter: brightness(0) saturate(100%) invert(49%) sepia(71%) saturate(375%) hue-rotate(3deg) brightness(97%) contrast(90%);
+    }
+  
+    .nav-icon--search {
+      display: none;
+    }
+    .nav-icon--profile {
+      display: flex;
+    }
 
+  }
+   
+   @media (max-width: 600px) {
+     .logo-img {
+       height: 60px;
+       width: auto;
+     }
+
+     @media (max-width: 768px) {
+        /* If you have: <header class="site-nav"> <div class="container header-inner"> … */
+        .site-nav .container {
+          width: 100% !important;   /* fill the full viewport width */
+          max-width: none !important;
+          margin: 0;                /* remove any auto margins */
+          padding: 0 1rem;          /* if you still want a little side padding */
+          box-sizing: border-box;   /* include that padding inside the 100% width */
+        }
+      
+        /* If you also have a nested .header-inner inside that container: */
+        .site-nav .header-inner {
+          width: 100%;
+          padding: 0;
+          box-sizing: border-box;
+        }
+      
+        /* Finally, make sure no child logo or input is forcing a minimum width >100% */
+        .site-nav .logo-img {
+          max-width: 120px;  /* shrink the logo if it’s too wide on very small screens */
+          height: auto;
+        }
+        .site-nav .search-form {
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+      }
+   }
+   
+   /* ──────────────────────────────────────────
+      Desktop Search Bar Styles
+      ────────────────────────────────────────── */
+   .search-form {
+     border: 1px solid var(--color-accent) !important;
+     border-radius: 3px;
+     height: 2.5rem;
+   }
+   
+   .search-form input {
+     flex: 1;
+     height: 100%;               /* match the .search-form height */
+     padding: 0 1rem;            /* 1rem space on left/right */
+     font-size: 1rem;
+     font-family: var(--font-main);
+     border: none;
+   }
+   
+   .search-form input::placeholder {
+     color: var(--color-text);
+     opacity: 1;
+   }
+   
+   .search-form button {
+     background: white;
+     border: none;
+     padding: 0 1rem;
+     cursor: pointer;
+   }
+   
+   /* If using inline <svg> in button: */
+   .search-form button svg {
+     width: 24px;
+     height: 24px;
+     fill: var(--color-accent);
+   }
+   
+   /* If using <img>: */
+   .search-form button img {
+     width: 24px;
+     height: 24px;
+     filter: brightness(0) saturate(100%) invert(49%) sepia(71%) saturate(375%) hue-rotate(3deg) brightness(97%) contrast(90%);
+   }
    
    /* ===========================
       Hero Section
       =========================== */
-/* HERO WRAPPER */
-.hero {
-    background: var(--color-bg);  /* page background shows as whitespace */
-    padding: 2rem 0;              /* vertical breathing room */
-  }
-  
-  .hero-window {
-    position: relative;
-    margin: 0 auto;
-    max-width: 1200px;            /* your desktop width */
-    padding: 0 2rem;              /* 2rem whitespace on left/right */
-    overflow: hidden;
-  }
-  
-  /* HERO IMAGE */
-  .hero-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 3px;           /* optional if you want rounded corners */
-  }
-  
-  /* HERO ARROWS */
-  .hero-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    font-size: 2.5rem;
-    color: var(--color-accent);
-    cursor: pointer;
-    padding: 0.5rem;
-    z-index: 10;
-  }
-  
-  .hero-prev { left: 0; }         /* sits in the left padding */
-  .hero-next { right: 0; }        /* sits in the right padding */
-  
-  /* HERO CTA */
-  .hero-cta {
-    position: absolute;
-    bottom: 2rem;                 /* 2rem up from bottom of image */
-    right: 3rem;                  /* 2rem in from right edge of padding */
-    background: var(--color-accent);
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    font-weight: 300;
-    border-radius: 2.5px;
-    text-decoration: none;
-    z-index: 10;
-  }
-  
-  @media (max-width: 767px) {
-    /* Make the hero window full-width at mobile */
-    .hero-window {
-      padding: 0;     /* remove left/right whitespace */
-      max-width: 100%;
-    }
-  
-    /* Ensure the image fills the viewport */
-    .hero-img {
-      width: 100vw;     /* full viewport width */
-      margin-left: calc(50% - 50vw);
-    }
-  
-    /* (Optional) Hide arrows on mobile if you don’t need them */
-    .hero-arrow {
-      display: none;
-    }
-  
-    /* Keep the CTA centered or adjust its position */
-    .hero-cta {
-      bottom: 1rem;
-      right: 1rem;
-    }
-  }
-   /* ===========================
-      Responsive Tweaks
-      =========================== */
-   @media (max-width: 768px) {
-     .header-inner {
-       padding: 0.5rem 0;
+   /* HERO WRAPPER */
+   .hero {
+     background: var(--color-bg);
+     padding: 2rem 0;
+   }
+   
+   .hero-window {
+     position: relative;
+     margin: 0 auto;
+     max-width: 1200px;            /* your desktop width */
+     padding: 0 2rem;              /* 2rem whitespace on left/right */
+     overflow: hidden;
+   }
+   
+   /* HERO IMAGE */
+   .hero-img {
+     display: block;
+     width: 100%;
+     height: auto;
+     border-radius: 3px;           /* optional if you want rounded corners */
+   }
+   
+   /* HERO ARROWS */
+   .hero-arrow {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     background: none;
+     border: none;
+     font-size: 2.5rem;
+     color: var(--color-accent);
+     cursor: pointer;
+     padding: 0.5rem;
+     z-index: 10;
+   }
+   
+   .hero-prev { left: 0; }         
+   .hero-next { right: 0; }        
+   
+   /* HERO CTA */
+   .hero-cta {
+     position: absolute;
+     bottom: 2rem;                 
+     right: 3rem;                  
+     background: var(--color-accent);
+     color: #fff;
+     padding: 0.75rem 1.5rem;
+     font-weight: 300;
+     border-radius: 2.5px;
+     text-decoration: none;
+     z-index: 10;
+   }
+   
+   @media (max-width: 767px) {
+     /* Make the hero window full-width at mobile */
+     .hero-window {
+       padding: 0;    
+       max-width: 100%;
      }
    
-     .logo-img {
-       height: 32px;
+     /* Ensure the image fills the viewport */
+     .hero-img {
+       width: 100vw;    
+       margin-left: calc(50% - 50vw);
      }
    
-     .nav-icon {
-       width: 36px;
-       height: 36px;
+     /* Hide arrows on mobile */
+     .hero-arrow {
+       display: none;
      }
    
-     .nav-icon img {
-       width: 20px;
-       height: 20px;
-     }
-   
-     .hero-content {
+     /* Reposition CTA on mobile */
+     .hero-cta {
        bottom: 1rem;
        right: 1rem;
      }
-   
-     .btn-primary {
-       padding: 0.5rem 1rem;
-       font-size: 0.9rem;
-     }
    }
    
+   /* ===========================
+      Featured Products (Homepage)
+      =========================== */
    .featured-products {
-    padding: 3rem 0;
-    background: transparent;     /* or your bg tone */
-  }
-  .featured-products h2 {
-    font-size: 1.75rem;
-    font-weight: 600;
-    text-align: left;
-    margin-bottom: 2rem;
-  }
-  .featured-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-  }
-  .product-card {
-    position: relative;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    text-align: center;
-    padding: 1rem;
-  }
-
-  .old-price {
-    position: absolute;
-    bottom: 1rem;               /* 1rem up from the card’s bottom edge */
-    right: 1rem;                /* 1rem in from the card’s right edge */
-    margin: 0;
-    font-size: 0.875rem;        /* slightly smaller */
-    color: #888888;             /* muted grey */
-    text-decoration: line-through;
-  }
-  .product-card img {
-    width: 100%;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-  }
-  .product-card h3 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  .product-card .price {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-accent);
-  }
-
-  .product-details {
-    flex: 1;
-    text-align: left;
-  }
-  
-/* FOOTER
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-/* FOOTER
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-.site-footer {
-    background: var(--color-text);  /* dark gray (#333333) */
-    color: var(--color-bg);         /* light text (#FAF9F6) */
-    padding: 3rem 2rem 1.5rem;
-    font-size: 0.9rem;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  /* Top section: brand + 4 columns */
-  .footer-inner {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-  
-  /* Each column */
-  .footer-col {
-    flex: 1 1 140px;
-  }
-  
-  /* Brand column is wider */
-  .footer-brand {
-    flex: 2 1 200px;
-  
-    /* Center all content inside this column */
-    text-align: center;
-  }
-  
-  /* Logo text */
-  .footer-logo {
-    font-family: var(--font-main);
-    font-size: 1.75rem;
-    color: var(--color-accent);
-    margin-bottom: 0.5rem;
-  }
-  
-  /* “Follow us” label */
-  .footer-follow {
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-accent);
-  }
-  
-  /* Social icons wrapper */
-  .footer-social {
-    display: inline-flex;       /* inline so it centers beneath the heading */
-    gap: 0.75rem;
-    margin-top: 0.25rem;
-  }
-  
-  .footer-social a {
-    display: inline-block;
-  }
-  
-  .footer-social img {
-    width: 24px;
-    height: 24px;
-    filter: brightness(0) invert(1);
-  }
-  
-  /* The other columns remain left‐aligned */
-  .footer-col h3 {
-    margin-bottom: 0.75rem;
-    color: var(--color-accent);
-    font-size: 1.1rem;
-  }
-  
-  .footer-col ul {
-    list-style: none;
-  }
-  .footer-col ul li {
-    margin-bottom: 0.4rem;
-  }
-  .footer-col a {
-    color: var(--color-bg);
-    text-decoration: none;
-  }
-  .footer-col a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Contact list: no bullets, icons inline */
-  .contact-list li {
-    display: flex;
-    align-items: center;
-  }
-  .contact-list a {
-    color: var(--color-bg);
-  }
-  
-  /* Bottom bar */
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding-top: 1rem;
-  }
-  .footer-bottom p {
-    margin: 0;
-    line-height: 1.4;
-  }
-  .footer-bottom small {
-    opacity: 0.8;
-    font-size: 0.8rem;
-  }
-  .footer-payments img {
-    height: 40px;
-    margin-left: 1rem;
-    filter: brightness(0) invert(1);
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .footer-inner {
-      flex-direction: column;
-      text-align: left;
-      gap: 0.5rem;
-    }
-    .footer-col {
-      margin-bottom: 0.75rem;
-      text-align: left;
-    }
-
-    .footer-bottom {
-      flex-direction: column;
-      text-align: center;
-      gap: 0.5rem;
-    }
-    .footer-payments {
-      order: -1;
-    }
-  }
-  
-  /* ----------------------------------------
-   2.1. Utility & Container
-   ---------------------------------------- */
-/* A utility class to center content + limit width */
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  
-  /* ----------------------------------------
-     2.2. HEADER ADJUSTMENTS FOR THIS PAGE
-     ---------------------------------------- */
-  /* Hide the “search” icon on mobile, show on desktop.
-     Show “profile” icon on desktop, hide on mobile. */
-  @media (max-width: 768px) {
-    .nav-icon--search {
-      display: none;
-    }
-    .nav-icon--profile {
-      display: none;
-    }
-  }
-  /* On desktop, we want “search” hidden and “profile” visible */
-  @media (min-width: 769px) {
-    .nav-icon--search {
-      display: flex;
-    }
-    .nav-icon--profile {
-      display: flex;
-    }
-  }
-  
-  /* ----------------------------------------
-     2.3. “Category + Filter” ROW
-     ---------------------------------------- */
-  .product-list-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 2rem 0 1.5rem; /* spacing above and below row */
-  }
-  
-  /* Category title styling */
-  .category-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--color-text);
-  }
-  
-  /* The filter button is just an icon with no background */
-  .filter-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-  }
-  .filter-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    filter: brightness(0) saturate(100%) invert(33%) sepia(12%)
-      saturate(474%) hue-rotate(10deg) brightness(94%) contrast(88%);
-  }
-  
-  /* ----------------------------------------
-     2.4. PRODUCT GRID – DESKTOP + MOBILE
-     ---------------------------------------- */
-  .product-grid {
-    display: grid;
-    gap: 2rem;
-    /* On desktop, show 4 columns */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    margin-bottom: 3rem;
-  }
-  
-  /* Reduce the gap on mobile if you’d like (optional) */
-  @media (max-width: 768px) {
-    .product-grid {
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1rem;
-    }
-  }
-  
-  /* ----------------------------------------
-     2.5. PRODUCT CARD
-     ---------------------------------------- */
-  .product-card {
-    background: #fff;
-    border-radius: 4px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    /* Add a slight drop shadow if you want:
-       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    */
-  }
-  
-  /* Make the image container keep a 1:1 aspect ratio */
-  .product-image-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 100%; /* 1:1 aspect ratio */
-    overflow: hidden;
-  }
-  
-  .product-image-wrapper .product-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-  
-  /* Product name & prices */
-  .product-name {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--color-text);
-    margin: 0.75rem 0 0.5rem;
-    padding: 0 0.5rem; /* small side padding */
-    line-height: 1.2;
-  }
-  
-  .product-prices {
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3.5rem;
-  }
-  
-  /* New (discounted) price */
-  .price-new {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-text);
-  }
-  
-  /* Old price with strikethrough */
-  .price-old {
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: #777;
-    text-decoration: line-through;
-  }
-  
-  /* ----------------------------------------
-     2.6. PAGE BACKGROUND (BEIGE)
-     ---------------------------------------- */
-  /* If you want the entire page background to be beige: */
-  body {
-    background-color: var(--color-bg);
-  }
-  
+     padding: 3rem 0;
+     background: transparent;
+   }
+   
+   .featured-products h2 {
+     font-size: 1.75rem;
+     font-weight: 600;
+     text-align: left;
+     margin-bottom: 2rem;
+   }
+   
+   .featured-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+     gap: 1.5rem;
+   }
+   
+   .product-card {
+     position: relative;
+     background: #fff;
+     border-radius: 8px;
+     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+     text-align: center;
+     padding: 1rem;
+   }
+   
+   .product-card img {
+     width: 100%;
+     border-radius: 4px;
+     margin-bottom: 1rem;
+   }
+   
+   .product-card h3 {
+     font-size: 1rem;
+     margin-bottom: 0.5rem;
+   }
+   
+   .product-card .price {
+     font-size: 1rem;
+     font-weight: 600;
+     color: var(--color-accent);
+   }
+   
+   .old-price {
+     position: absolute;
+     bottom: 1rem;
+     right: 1rem;
+     margin: 0;
+     font-size: 0.875rem;
+     color: #888888;
+     text-decoration: line-through;
+   }
+   
+   /* ===========================
+      Footer
+      =========================== */
+   .site-footer {
+     background: var(--color-text);
+     color: var(--color-bg);
+     padding: 3rem 2rem 1.5rem;
+     font-size: 0.9rem;
+     width: 100%;
+   }
+   
+   .site-footer .footer-inner {
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: 0 1rem; /* no extra horizontal padding on body */
+     display: flex;
+     flex-wrap: wrap;
+     gap: 2rem;
+   }
+   
+   /* Top section: brand + 4 columns */
+   .footer-col {
+     flex: 1 1 140px;
+   }
+   
+   .footer-brand {
+     flex: 2 1 200px;
+     text-align: center;
+   }
+   
+   /* Logo text */
+   .footer-logo {
+     font-family: var(--font-main);
+     font-size: 1.75rem;
+     color: var(--color-accent);
+     margin-bottom: 0.5rem;
+   }
+   
+   /* “Follow us” label */
+   .footer-follow {
+     margin-bottom: 0.5rem;
+     text-transform: uppercase;
+     letter-spacing: 0.05em;
+     color: var(--color-accent);
+   }
+   
+   /* Social icons wrapper */
+   .footer-social {
+     display: inline-flex;
+     gap: 0.75rem;
+     margin-top: 0.25rem;
+   }
+   
+   .footer-social img {
+     width: 24px;
+     height: 24px;
+     filter: brightness(0) invert(1);
+   }
+   
+   /* Column headings/links */
+   .footer-col h3 {
+     margin-bottom: 0.75rem;
+     color: var(--color-accent);
+     font-size: 1.1rem;
+   }
+   .footer-col ul {
+     list-style: none;
+   }
+   .footer-col ul li {
+     margin-bottom: 0.4rem;
+   }
+   .footer-col a {
+     color: var(--color-bg);
+     text-decoration: none;
+   }
+   .footer-col a:hover {
+     text-decoration: underline;
+   }
+   
+   /* Contact list items */
+   .contact-list li {
+     display: flex;
+     align-items: center;
+   }
+   .contact-list a {
+     color: var(--color-bg);
+   }
+   
+   /* Bottom bar */
+   .footer-bottom {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     border-top: 1px solid rgba(255, 255, 255, 0.2);
+     padding-top: 1rem;
+   }
+   
+   .footer-bottom p {
+     margin: 0;
+     line-height: 1.4;
+   }
+   
+   .footer-bottom small {
+     opacity: 0.8;
+     font-size: 0.8rem;
+   }
+   
+   .footer-payments img {
+     height: 40px;
+     margin-left: 1rem;
+     filter: brightness(0) invert(1);
+   }
+   
+   /* Responsive adjustments */
+   @media (max-width: 768px) {
+     .footer-inner {
+       flex-direction: column;
+       text-align: left;
+       gap: 0.5rem;
+     }
+     .footer-col {
+       margin-bottom: 0.75rem;
+       text-align: left;
+     }
+     .footer-bottom {
+       flex-direction: column;
+       text-align: center;
+       gap: 0.5rem;
+     }
+     .footer-payments {
+       order: -1;
+     }
+   }

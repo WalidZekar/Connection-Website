@@ -11,8 +11,104 @@
   <link rel="stylesheet" href="base.css" />
 </head>
 <body>
-  <!-- HEADER -->
-  <header class="site-nav">
+
+      <!-- =======================
+       HEADER + NAVIGATION
+       ======================= -->
+
+<header class="site-nav">
+<nav class="menu-drawer" aria-hidden="true">
+    <!-- 1a) Drawer Header (close icon + optional profile icon) available on mobile version -->
+    <div class="drawer-header">
+      <a href="/profile" class="drawer-profile" aria-label="Profile">
+        <img src="Profile.svg" alt="Profile icon" />
+      </a>
+  
+      <!-- “X” button to close the drawer -->
+      <button class="drawer-close" aria-label="Close menu">✕</button>
+    </div>
+  
+    <!-- 1b) Drawer Content: A vertical list of top‐level categories -->
+    <ul class="drawer-list">
+      <!-- Each <li> is a collapsible section -->
+      <li class="drawer-item">
+        <button class="drawer-button">
+          Homewares &amp; Décor
+          <span class="drawer-icon">＋</span>
+        </button>
+        <!-- Submenu (initially hidden) -->
+        <ul class="drawer-submenu">
+        <!-- This option will take user to the list of product page -->
+        <li>
+            <a href="productlist.html" class="drawer-link drawer-link--view-all">
+             View All Homewares &amp; Décor
+            </a>
+        </li>
+          <li><a href="#">Coasters &amp; Placemats</a></li>
+          <li><a href="#">Decorator Items</a></li>
+          <li><a href="#">Bar</a></li>
+        </ul>
+      </li>
+  
+      <li class="drawer-item">
+        <button class="drawer-button">
+          Connection Parfumerie
+          <span class="drawer-icon">＋</span>
+        </button>
+        <ul class="drawer-submenu">
+          <li><a href="#">Zoologist Perfumes</a></li>
+          <li><a href="#">Toskovat</a></li>
+          <li><a href="#">Liquides Imaginaires</a></li>
+        </ul>
+      </li>
+  
+      <li class="drawer-item">
+        <button class="drawer-button">
+          Gifts
+          <span class="drawer-icon">＋</span>
+        </button>
+        <ul class="drawer-submenu">
+          <li><a href="#">Eclectic Gifts</a></li>
+          <li><a href="#">Clothing Accessories</a></li>
+          <li><a href="#">Jewellery &amp; Displays</a></li>
+        </ul>
+      </li>
+  
+      <li class="drawer-item">
+        <button class="drawer-button">
+          Home Fragrance &amp; Oils
+          <span class="drawer-icon">＋</span>
+        </button>
+        <ul class="drawer-submenu">
+            <li><a href="#">Candles</a></li>
+            <li><a href="#">Essential Oil Products</a></li>
+            <li><a href="#">Fragrance Oil Products</a></li>
+        </ul>
+      </li>
+  
+      <li class="drawer-item">
+        <button class="drawer-button">
+          New Arrivals
+          <span class="drawer-icon">＋</span>
+        </button>
+        <ul class="drawer-submenu">
+            <li><a href="#">Homewares & Décor</a></li>
+            <li><a href="#">Gifts</a></li>
+            <li><a href="#">Pots & Planters</a></li>
+        </ul>
+      </li>
+  
+      <li class="drawer-item">
+        <button class="drawer-button">
+          Luxury Gifts
+         
+        </button>
+      </li>
+    </ul>
+  </nav>
+  
+
+
     <div class="container header-inner">
       <!-- Logo -->
       <a href="/" class="logo">
@@ -20,12 +116,17 @@
       </a>
 
           <!-- Search bar (desktop only) -->
-    <form action="/search" method="GET" class="search-form">
-        <input type="search" name="q" placeholder="Search…" aria-label="Search"/>
-        <button type="submit" aria-label="Submit search">
-          <img src="Search Icon.svg" alt="" />
-        </button>
-      </form>
+          <form action="/search" method="GET" class="search-form">
+            <input
+              type="search"
+              name="q"
+              placeholder="Search…"
+              aria-label="Search"
+            />
+            <button type="submit" aria-label="Submit search">
+              <img src="Search Icon.svg" alt="Search" />
+            </button>
+          </form>
 
       <!-- Nav Icons -->
       <div class="nav-icons">
@@ -33,13 +134,13 @@
          <a href="#" class="nav-icon nav-icon--search" aria-label="Search">
              <img src="Search Icon.svg" alt="" />
          </a>
-        <a href="/profile" class="nav-icon nav-icon--profile" aria-label="Profile">
-            <img src="Profile.svg" alt="" />
+        <a href="/profile" class="nav-icon nav-icon--profile" aria-label="Profile" class="nav-icon">
+            <img src="Profile 1.svg" alt="" />
           </a>
         <a href="pages/cart.html" aria-label="View cart" class="nav-icon">
           <img src="Cart Icon.svg" alt="" />
         </a>
-        <a href="#" aria-label="Menu" class="nav-icon">
+        <a href="#" aria-label="Menu" class="nav-icon nav-icon--menu">
           <img src="Menu Icon.svg" alt="" />
         </a>
       </div>
@@ -48,6 +149,12 @@
 
  
   <main> 
+
+
+  <!-- =======================
+       MAIN CONTENT
+       ======================= -->
+
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="container hero-window">
@@ -59,7 +166,7 @@
             <!-- Mobile first: up to 767px -->
             <source
               media="(max-width: 767px)"
-              srcset="Hero Mobile.jpg"
+              src="Hero Mobile.jpg"
             />
             <!-- Fallback / desktop -->
             <img
@@ -115,7 +222,9 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- =======================
+       FOOTER
+       ======================= -->
   <footer class="site-footer">
     <div class="footer-inner container">
       <div class="footer-col footer-brand">
@@ -177,10 +286,8 @@
       </div>
     </div>
   </footer>
-  
-
   </main>
 
-  <script src="js/main.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

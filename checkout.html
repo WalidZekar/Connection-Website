@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connection – Checkout</title>
+
+  <!-- Google Font: Sen -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sen:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Base styles (your existing global styles) -->
+  <link rel="stylesheet" href="base.css" />
+
+  <!-- Checkout‐specific styles -->
+  <link rel="stylesheet" href="checkout.css" />
+</head>
+
+<body>
+  <!-- ==================== HEADER (reuse your existing header) ==================== -->
+  <header class="site-nav">
+    <div class="container header-inner">
+      <!-- Logo -->
+      <a href="/" class="logo">
+        <img src="logo.svg" alt="Connection logo" class="logo-img" />
+      </a>
+
+      <!-- Desktop search (≥768px) -->
+      <form action="/search" method="GET" class="search-form">
+        <input
+          type="search"
+          name="q"
+          placeholder="Search…"
+          aria-label="Search"
+        />
+        <button type="submit" aria-label="Submit search">
+          <img src="Search Icon.svg" alt="Search" />
+        </button>
+      </form>
+
+      <!-- Nav Icons -->
+      <div class="nav-icons">
+        <!-- Mobile search icon -->
+        <a href="#" class="nav-icon nav-icon--search" aria-label="Search">
+          <img src="Search Icon.svg" alt="Search" />
+        </a>
+        <!-- Profile icon (desktop only) -->
+        <a href="/profile" class="nav-icon nav-icon--profile" aria-label="Profile">
+          <img src="Profile 1.svg" alt="Profile" />
+        </a>
+        <!-- Cart icon -->
+        <a href="/shopping-cart.html" class="nav-icon cart-link" aria-label="View cart">
+          <img src="Cart Icon.svg" alt="Cart" />
+          <span class="cart-badge">2</span>
+        </a>
+        <!-- Menu icon -->
+        <a href="#" class="nav-icon nav-icon--menu" aria-label="Menu">
+          <img src="Menu Icon.svg" alt="Menu" />
+        </a>
+      </div>
+    </div>
+  </header>
+  <!-- =============================================================================== -->
+
+  <main class="checkout-page container">
+    <!-- =============== PAGE HEADER =============== -->
+    <div class="checkout-header">
+      <h1 class="checkout-title">Checkout</h1>
+    </div>
+
+    <!-- =============== TWO‐COLUMN GRID =============== -->
+    <div class="checkout-grid">
+      <!-- ================= LEFT COLUMN ================= -->
+      <section class="left-col">
+        <!-- ----- Order Summary Block ----- -->
+        <h2 class="block-heading">Order Summary</h2>
+        <div class="order-summary">
+
+          <!-- === First product row === -->
+          <div class="order-item">
+            <div class="order-thumb">
+              <img
+                src="leo leopard main.png"
+                alt="Leo Leopard Side Table"
+                class="thumb-img"
+              />
+            </div>
+            <div class="order-info">
+              <span class="order-name">Leo Leopard Side Table</span>
+              <span class="order-price">$199.99</span>
+            </div>
+            <button class="order-remove" aria-label="Remove item">×</button>
+            <div class="order-qty-box">
+              <span class="order-qty">1</span>
+            </div>
+          </div>
+          <!-- /.order-item -->
+
+          <!-- === Second product row === -->
+          <div class="order-item">
+            <div class="order-thumb">
+              <img
+                src="grace lamp.svg"
+                alt="Grace Lamp"
+                class="thumb-img"
+              />
+            </div>
+            <div class="order-info">
+              <span class="order-name">Grace Lamp</span>
+              <span class="order-price">$650.00</span>
+            </div>
+            <button class="order-remove" aria-label="Remove item">×</button>
+            <div class="order-qty-box">
+              <span class="order-qty">1</span>
+            </div>
+          </div>
+          <!-- /.order-item -->
+
+        </div>
+        <!-- /.order‐summary -->
+
+        <!-- ----- Total Block ----- -->
+        <div class="summary-total-block">
+          <span class="summary-label">Total:</span>
+          <span class="summary-amount">$849.99</span>
+        </div>
+
+        <!-- ----- Personal Details Form ----- -->
+        <div class="details-section">
+          <h2 class="block-heading">Personal Details</h2>
+          <form class="personal-form">
+            <input
+              type="text"
+              id="full-name"
+              name="full-name"
+              placeholder="Full Name"
+              required
+            />
+
+           
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Phone Number"
+              required
+            />
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email Address"
+              required
+            />
+          </form>
+        </div>
+        <!-- /.details-section -->
+
+        <!-- ----- Delivery Details Form ----- -->
+        <div class="details-section">
+          <h2 class="block-heading">Delivery Details</h2>
+          <form class="delivery-form">
+            <input
+              type="text"
+              id="street"
+              name="street"
+              placeholder="Street Address"
+              required
+            />
+
+            <div class="two-input-row">
+              <div>
+                <input
+                  type="text"
+                  id="suburb"
+                  name="suburb"
+                  placeholder="Suburb"
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  id="state"
+                  name="state"
+                  placeholder="State"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="two-input-row">
+              <div>
+                <input
+                  type="text"
+                  id="postcode"
+                  name="postcode"
+                  placeholder="Postcode"
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  id="country"
+                  name="country"
+                  placeholder="Country"
+                  required
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- /.details-section -->
+      </section>
+      <!-- ================= end LEFT COLUMN ================= -->
+
+
+      <!-- ================= RIGHT COLUMN ================= -->
+      <aside class="right-col">
+        <h2 class="block-heading">Payment Methods</h2>
+        <div class="payment-list">
+          <!-- PayPal box -->
+          <button class="payment-btn">
+            <span class="payment-text">PayPal</span>
+            <img src="paypal checkout.svg" alt="PayPal" />
+          </button>
+          <!-- American Express box -->
+          <button class="payment-btn">
+            <span class="payment-text">American Express</span>
+            <img src="amex checkout.svg" alt="American Express" />
+          </button>
+          <!-- MasterCard box -->
+          <button class="payment-btn">
+            <span class="payment-text">MasterCard</span>
+            <img src="mastercard checkout.svg" alt="MasterCard" />
+          </button>
+          <!-- Visa box -->
+          <button class="payment-btn">
+            <span class="payment-text">Visa</span>
+            <img src="visa checkout.svg" alt="Visa" />
+          </button>
+        </div>
+
+        <!-- Confirm button at bottom -->
+        <div class="confirm-box">
+          <button class="btn btn-primary confirm-btn">Confirm</button>
+        </div>
+      </aside>
+      <!-- ================= end RIGHT COLUMN ================= -->
+    </div>
+    <!-- /.checkout-grid -->
+  </main>
+
+  <!-- ==================== FOOTER (reuse your existing footer) ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col footer-brand">
+        <h2 class="footer-logo">CONNECTION</h2>
+        <p class="footer-follow">Follow us</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">
+            <img src="facebook-svgrepo-com.svg" alt="Facebook" />
+          </a>
+          <a href="#" aria-label="Instagram">
+            <img src="instagram-svgrepo-com.svg" alt="Instagram" />
+          </a>
+          <a href="#" aria-label="Pinterest">
+            <img src="pinterest-180-svgrepo-com.svg" alt="Pinterest" />
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3>Service</h3>
+        <ul>
+          <li><a href="#">Perfume Posts</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>About Us</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Store Finder</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Information</h3>
+        <ul>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Returns Policy</a></li>
+          <li><a href="#">Security Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul class="contact-list">
+          <li><a href="tel:0447166108">0447 166 108</a></li>
+          <li>Melbourne, Australia</li>
+          <li><a href="mailto:hello@connection.com">Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom container">
+      <p class="copyright">© 2025 Connection</p>
+      <div class="footer-payments">
+        <img src="paypal-svgrepo-com (2).svg" alt="PayPal" />
+        <img src="american-express-svgrepo-com.svg" alt="American Express" />
+        <img src="mastercard-svgrepo-com (1).svg" alt="MasterCard" />
+        <img src="visa-svgrepo-com.svg" alt="Visa" />
+      </div>
+    </div>
+  </footer>
+  <!-- ============================================================================== -->
+
+  <script src="main.js"></script>
+</body>
+</html>
