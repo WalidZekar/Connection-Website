@@ -312,7 +312,68 @@
 
     </main>
 
-    <script src="main.js"></script>
+    <!-- ==== ADD THIS SCRIPT AT THE VERY BOTTOM OF gracelamp.html ==== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const addToCartBtn = document.querySelector('.add-to-cart');
+      if (!addToCartBtn) return;
+
+      addToCartBtn.addEventListener('click', () => {
+        // 1) Read or initialize cart array from localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // 2) Grab product info from the DOM
+        const titleEl = document.getElementById('product-title');
+        const priceEl = document.getElementById('product-price');
+        const qtyEl   = document.querySelector('.qty-value');
+        const mainImg = document.getElementById('product-img');
+
+        if (!titleEl || !priceEl || !qtyEl || !mainImg) {
+          alert('Product info is missing—cannot add to cart.');
+          return;
+        }
+
+        const productName = titleEl.textContent.trim();
+        // Convert “$650.00” → 650.00
+        const priceNum = parseFloat(priceEl.textContent.replace(/[^0-9\.]/g, '')) || 0;
+        // Parse the quantity (default to 1 if parse fails)
+        const quantity = parseInt(qtyEl.textContent, 10) || 1;
+        const imgURL   = mainImg.getAttribute('src') || '';
+
+        // Use a fixed ID for this product
+        const productId = 'grace-lamp';
+
+        // 3) Add/update this item in cart[]
+        const existingIndex = cart.findIndex(item => item.id === productId);
+        if (existingIndex > -1) {
+          // Already in cart → bump the quantity
+          cart[existingIndex].qty += quantity;
+        } else {
+          // New to cart → push a new object
+          cart.push({
+            id:    productId,
+            name:  productName,
+            price: priceNum,
+            qty:   quantity,
+            image: imgURL
+          });
+        }
+
+        // 4) Save updated cart back to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // 5) (Optional) update your cart badge if you have one on this page
+        const badge = document.querySelector('.cart-badge');
+        if (badge) {
+          const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+          badge.textContent = totalCount > 0 ? totalCount : '';
+        }
+
+        // 6) Finally, redirect to the shopping cart page
+        window.location.href = 'shoppingcart.html';
+      });
+    });
+  </script>
   </body>
 </html>
 

@@ -1,8 +1,10 @@
 (function() {
+  // I grab the hamburger menu, the off-canvas drawer, and the close button
     const menuButton = document.querySelector('.nav-icon--menu');
     const drawer     = document.querySelector('.menu-drawer');
     const closeButton= document.querySelector('.drawer-close');
   
+    // If the menu icon and drawer exist, a click handler is set up to open the drawer
     if (menuButton && drawer) {
       menuButton.addEventListener('click', function(e) {
         e.preventDefault();
@@ -11,6 +13,7 @@
       });
     }
   
+    // If the close button exists, I code a click handler to close the drawer
     if (closeButton && drawer) {
       closeButton.addEventListener('click', function(e) {
         e.preventDefault();
@@ -19,7 +22,7 @@
       });
     }
   
-    // Close drawer if clicking outside of it
+    // If user clicks anywhere outside the drawer, the drawer itself will close
     document.addEventListener('click', function(e) {
       if (
         drawer &&
@@ -32,8 +35,8 @@
       }
     });
   
-    // Collapsible submenus (toggle plus/minus)
-    document.querySelectorAll('.drawer-button').forEach(btn => {
+  // For each collapsible submenu button, I press the “expanded” class and swap plus/minus icons
+  document.querySelectorAll('.drawer-button').forEach(btn => {
       btn.addEventListener('click', function() {
         const parentLi = this.closest('.drawer-item');
         const iconSpan = parentLi.querySelector('.drawer-icon');
@@ -52,7 +55,8 @@
     // --------------------------
     // 1) SET UP CART IN LOCAL STORAGE
     // --------------------------
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  // I load whatever is already in localStorage under “cart”, or start with an empty array
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
     function saveCart() {
       localStorage.setItem('cart', JSON.stringify(cart));
     }
@@ -69,6 +73,7 @@
     //    (Click a product-item → productpage.html?id=…)
     // --------------------------
     if (window.location.pathname.endsWith('productlist.html')) {
+          // I look for every .product-item and attach a click that sends the user to productpage.html with the correct ID, in this case, only two products will work (Leo Leopard Side Table & Grace Lamp)
       const productItems = document.querySelectorAll('.product-item');
       productItems.forEach(item => {
         item.addEventListener('click', () => {
@@ -86,11 +91,7 @@
     if (window.location.pathname.endsWith('productpage.html')) {
       // 3a) Read productId from URL (e.g. "?id=leo-leopard")
       const params       = new URLSearchParams(window.location.search);
-      const productId    = params.get('id');
-  
-      // *Optional*: If you wanted to load product-specific data (like title, price, thumbnails)
-      // from a JS object mapping IDs to data, you could do it here. For now, HTML is static.
-  
+      const productId    = params.get('id');  
       // 3b) GALLERY: thumbnails → main image + Prev/Next arrows + Lightbox
       const gallery = document.querySelector('.product-gallery');
       if (gallery) {
@@ -103,6 +104,7 @@
         let currentIndex = 0;
   
         if (thumbEls.length && mainImg) {
+          // I build an array of URLs from the thumbnail attributes
           const imageURLs = thumbEls.map(el => el.getAttribute('src'));
   
           // Clicking a thumbnail updates main image (and lightbox if open)
@@ -116,7 +118,7 @@
             });
           });
   
-          // Prev arrow: go back one image (wrap around)
+          // Prev arrow: go back one image (wrapping around)
           if (prevBtn) {
             prevBtn.addEventListener('click', () => {
               currentIndex = (currentIndex - 1 + imageURLs.length) % imageURLs.length;
@@ -127,7 +129,7 @@
             });
           }
   
-          // Next arrow: go forward one image (wrap around)
+          // Next arrow: go forward one image (wrapping around)
           if (nextBtn) {
             nextBtn.addEventListener('click', () => {
               currentIndex = (currentIndex + 1) % imageURLs.length;
@@ -139,14 +141,15 @@
           }
         }
   
-        // Lightbox: click main image → open overlay + copy src
-        if (mainImg && overlay && overlayImg) {
+      // Lightbox behavior: Clicking the main image opens an overlay with a larger view
+      if (mainImg && overlay && overlayImg) {
           mainImg.addEventListener('click', () => {
             overlayImg.src = mainImg.src;
             overlay.setAttribute('aria-hidden', 'false');
             overlay.classList.add('open');
           });
   
+          // Clicking the “×” in the overlay closes it
           const closeBtn = document.querySelector('.lightbox-close');
           if (closeBtn) {
             closeBtn.addEventListener('click', () => {
@@ -154,7 +157,7 @@
               overlay.setAttribute('aria-hidden', 'true');
             });
           }
-  
+          // Clicking anywhere on the overlay background also closes it
           overlay.addEventListener('click', (e) => {
             if (e.target === overlay) {
               overlay.classList.remove('open');
@@ -187,7 +190,7 @@
           ) {
             currentVal = Math.max(1, currentVal - 1);
           }
-          valueEl.textContent = currentVal;
+          valueEl.textContent = currentVal; // update the displayed quantity
         });
       }
   
@@ -195,7 +198,7 @@
       const addToCartBtn = document.querySelector('.add-to-cart');
       if (addToCartBtn) {
         addToCartBtn.addEventListener('click', () => {
-          // Grab product info from DOM
+        // I pull the product’s title, price, quantity, and image URL from the DOM
           const titleEl = document.getElementById('product-title');
           const priceEl = document.getElementById('product-price');
           const qtyEl   = document.querySelector('.qty-value');
@@ -210,6 +213,7 @@
           const priceNum    = parseFloat(priceEl.textContent.replace(/[^0-9\.]/g, '')) || 0;
           const quantity    = parseInt(qtyEl.textContent, 10) || 1;
           const imgURL      = mainImg ? mainImg.getAttribute('src') : '';
+          // I use the URL query “id” if it exists; otherwise I derive from product name
           const idToUse     = productId || productName.toLowerCase().replace(/\s+/g, '-');
   
           // Add or update in cart[]
@@ -242,6 +246,7 @@
     // --------------------------
     if (window.location.pathname.endsWith('shoppingcart.html')) {
       const cartContainer = document.querySelector('.cart-container');
+      // I grab the header row and summary block so I can hide them if cart is empty
       const headerRow     = cartContainer ? cartContainer.querySelector('.cart-header') : null;
       const summaryEl     = cartContainer ? cartContainer.querySelector('.cart-summary') : null;
       const emptyMessage  = cartContainer ? cartContainer.querySelector('.empty-cart') : null;
@@ -314,7 +319,7 @@
       }
   
       function attachCartItemListeners() {
-        // Quantity buttons
+        // Quantity buttons inside each row
         const allQtySelectors = cartContainer.querySelectorAll('.quantity-selector-desktop');
         allQtySelectors.forEach(qtyWrap => {
           qtyWrap.addEventListener('click', (e) => {
@@ -324,7 +329,8 @@
             const row    = btn.closest('.cart-item');
             const index  = parseInt(row.dataset.index, 10);
             if (isNaN(index)) return;
-  
+
+            // Update the quantity in the cart array
             let currentQty = cart[index].qty;
             if (action === 'increase') {
               currentQty++;
@@ -334,7 +340,8 @@
             cart[index].qty = currentQty;
             saveCart();
             updateCartBadge();
-  
+
+            // Update the UI for that row
             const valueEl = row.querySelector('.qty-value-desktop');
             valueEl.textContent = currentQty;
             const priceEl = row.querySelector('.new-price');
@@ -397,6 +404,7 @@
       const checkoutContainer = document.querySelector('.checkout-container');
       if (checkoutContainer) {
         const orderSummaryEl = checkoutContainer.querySelector('.order-summary');
+        // I build the order summary on the left side from the cart array
         if (orderSummaryEl) {
           orderSummaryEl.innerHTML = '';
           cart.forEach((item, idx) => {
@@ -420,17 +428,17 @@
             orderSummaryEl.appendChild(card);
           });
   
-          // Wire up remove buttons in order summary
-          const removeButtons = orderSummaryEl.querySelectorAll('.remove-btn');
+        // Allow removing items directly from the order summary
+        const removeButtons = orderSummaryEl.querySelectorAll('.remove-btn');
           removeButtons.forEach(rm => {
             rm.addEventListener('click', (e) => {
               const row   = e.target.closest('.order-item');
               const index = parseInt(row.dataset.index, 10);
               if (!isNaN(index)) {
-                cart.splice(index, 1);
+                cart.splice(index, 1); // remove from cart array 
                 saveCart();
                 updateCartBadge();
-                row.remove();
+                row.remove(); // remove form DOM
               }
             });
           });
@@ -469,8 +477,8 @@
     // --------------------------
     // 6) PAGE-TO-PAGE FLOW (outside DOMContentLoaded section)
     // --------------------------
-    // “Homewares & Décor” (drawer link) → productlist.html
-    const homewaresLink = document.querySelector('.drawer-link--homewares') 
+    // I want clicking “Homewares & Décor” in the drawer to close it and go to productlist.html
+  const homewaresLink = document.querySelector('.drawer-link--homewares') 
                        || document.getElementById('homewares-link');
     if (homewaresLink) {
       homewaresLink.addEventListener('click', e => {
@@ -484,6 +492,6 @@
       });
     }
   
-    // On shoppingcart.html: render (already done in block 4) and wire Checkout (already done)
+  // On shoppingcart.html, rendering and checkout logic are handled above in block 4
   
   }); // end DOMContentLoaded
