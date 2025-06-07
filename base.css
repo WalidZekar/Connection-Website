@@ -111,7 +111,7 @@
     width: 80vw;                    /* drawer width on mobile */
     max-width: 320px;               /* optional cap */
     height: 100vh;                  /* full viewport height */
-    background: #B3B097;            /* your drawer background color */
+    background: #B3B097;            /* drawer background color */
     transform: translateX(100%);    /* start completely off‐screen */
     transition: transform 0.3s ease;
     z-index: 1000;                  /* above everything else */
@@ -275,23 +275,22 @@
      }
 
      @media (max-width: 768px) {
-        /* If you have: <header class="site-nav"> <div class="container header-inner"> … */
         .site-nav .container {
           width: 100% !important;   /* fill the full viewport width */
           max-width: none !important;
           margin: 0;                /* remove any auto margins */
-          padding: 0 1rem;          /* if you still want a little side padding */
+          padding: 0 1rem;          /* a little side padding */
           box-sizing: border-box;   /* include that padding inside the 100% width */
         }
       
-        /* If you also have a nested .header-inner inside that container: */
+
         .site-nav .header-inner {
           width: 100%;
           padding: 0;
           box-sizing: border-box;
         }
       
-        /* Finally, make sure no child logo or input is forcing a minimum width >100% */
+
         .site-nav .logo-img {
           max-width: 120px;  /* shrink the logo if it’s too wide on very small screens */
           height: auto;
@@ -369,7 +368,7 @@
      display: block;
      width: 100%;
      height: auto;
-     border-radius: 3px;           /* optional if you want rounded corners */
+     border-radius: 3px;           
    }
    
    /* HERO ARROWS */
