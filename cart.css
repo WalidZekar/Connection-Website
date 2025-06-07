@@ -105,10 +105,10 @@
     position: absolute;
     top: -1px;
     right: 5px;
-    background: var(--color-accent);  /* same accent colour you use site‐wide */
+    background: var(--color-accent);  
     color: #fff;
     font-family: var(--font-main);
-    font-size: 0.75rem;               /* adjust to taste */
+    font-size: 0.75rem;               
     line-height: 1;
     width: 16px;                      /* a small circle around the number */
     height: 16px;
@@ -208,7 +208,7 @@
       .cart-title {
         font-family: var(--font-main);
         font-weight: 600;
-        font-size: 1.75rem;  /* adjust to match your mockup, e.g. 28px */
+        font-size: 1.75rem;  
         color: var(--color-text);
         margin: 0;
       }
@@ -354,7 +354,7 @@
   
   /* Left column: text labels */
   .summary-left .summary-label {
-    font-size: 1.5rem;        /* match your heading size */
+    font-size: 1.5rem;       
     font-weight: 600;
     margin-bottom: 0.25rem;
   }
@@ -574,15 +574,14 @@
       padding: 0 1rem 1rem;
     }
   
-    /* Hide the default “old price” if you want, or keep as small strikethrough */
+  
     .old-price {
       font-size: 0.875rem;
       color: #888;
       text-decoration: line-through;
       margin-left: 0.5rem;
     }
-  
-    /* Re‐use your existing quantity‐selector markup, but scale down */
+
     .quantity-selector-desktop {
       display: flex;
       background: #fff;
