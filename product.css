@@ -1,10 +1,9 @@
-/* product.css */
 
-/* 1) Ensure the container for entire product page is centered and flexes on desktop */
+
+
 .product-page {
     display: flex;
     align-items: flex-start;
-    /* If you want the two columns side-by-side on desktop: */
     gap: 2rem;                     /* space between gallery and details */
     max-width: 1200px;
     margin: 0 auto;
@@ -32,8 +31,7 @@
     gap: 0.75rem;
 
   }
-  
-  /* Style each thumbnail */
+
   .thumb {
     width: 80px;
     height: 80px;
@@ -114,11 +112,11 @@
   /* The large product image */
   .main-image {
     display: block;            /* fill the width of the container */
-    max-width: 100%;         /* or whatever max‐width you need */
+    max-width: 100%;        
     height: auto;    
     object-fit: contain;         /* keep aspect ratio, thereby fixing the flex row’s height */
-    border-radius: 8px;       /* optional: round corners if you want a “card” effect */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* optional: shadow if you want a card */
+    border-radius: 8px;       /* optional: round corners for “card” effect */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
   }
   
   /* 6) Arrow buttons */
@@ -208,7 +206,7 @@
   /* Title styling */
   .product-title {
     font-family: var(--font-main);
-    font-size: 2rem;           /* adjust to match your mockup (e.g., 32px) */
+    font-size: 2rem;           
     font-weight: 600;
     color: var(--color-text);
     margin-bottom: 1rem;       /* space below title */
@@ -224,7 +222,7 @@
   }
   
   .product-price {
-    font-size: 2rem;           /* e.g., 32px */
+    font-size: 2rem;           
     font-weight: 700;
     color: var(--color-text);
   }
@@ -257,9 +255,9 @@
   .quantity-selector {
     display: flex;
     background: #ffffff;            /* white background */
-    border-radius: 4px;             /* rounded corners (adjust as needed) */
+    border-radius: 4px;             /* rounded corners */
     overflow: hidden;               /* ensure children don’t bleed outside */
-    border: 1px solid #C5C1B4;      /* a light border, matching your accent palette */
+    border: 1px solid #C5C1B4;      /* a light border, matching accent palette */
     width: max-content;             /* shrink to fit content */
     height: 2rem;
   }
