@@ -412,10 +412,10 @@
         width: 100%;
         max-width: none;
         margin: 0;
-        padding: 0 1rem; /* a little side padding, if you need it */
+        padding: 0 1rem; 
         box-sizing: border-box;
       }
-      /* If you have a nested .header-inner, also ensure it can’t overflow: */
+
       .site-nav .header-inner {
         width: 100%;
         padding: 0;
@@ -423,14 +423,13 @@
       }
     
       .logo-img {
-        max-width: 200px;    /* shrink your logo so it can fit */
+        max-width: 200px;   
         height: auto;
       }
       .nav-icons {
-        gap: 0.5rem;         /* shrink the icon spacing a bit */
+        gap: 0.5rem;         
       }
       .search-form {
-        /* if you still show a search icon on mobile, ensure the input isn’t forcing an overflow: */
         max-width: 100%;
       }
     
